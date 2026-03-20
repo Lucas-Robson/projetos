@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            background-image:url(images.jpg) ;
+
+             
+
+        }
+
+        .titulo {
+            margin-bottom: 20px;
+            color: #ff0000;
+            background-color: #f0f0f077;
+            padding: 10px 20px;
+            border-radius: 5px;
+
+        }
+
+        .botoes {
+            display: flex;
+            gap: 20px;
+
+
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+                background-color: gold;
+                border: none;
+                color: white;
+                border-radius: 5px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="titulo">
+<h1>ACEITA FARMAR AURA COMIGO🗿🍷 ?</h1>
+</div>
+<div class="botoes">
+<div class="botaoS">
+<button onclick="sim()">SIM</button>
+</div>
+<div class="botaoN">
+<button id="botao" onclick="desvia()">NÃO SOU GAY</button>
+</div>
+</div>
+    <script>
+        function sim() {
+            location.href = "https://www.youtube.com/shorts/Y1PK--ET3AY";
+        }
+
+        let botao = document.getElementById("botao");
+
+        function desvia() {
+            botao.style.position = "absolute";
+            botao.style.bottom = gerarPosicao(10, 90);;
+            botao.style.left = gerarPosicao(10, 90);
+        }
+
+        function gerarPosicao(min, max) {
+            return Math.floor(Math.random() * (max - min  ) + min)+"%"
+        }
+    </script>
+</body>
+</html>
