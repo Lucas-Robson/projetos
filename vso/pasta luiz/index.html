@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interatividade JavaScript</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .section {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 10px;
+      display: block;
+      margin: 10px auto;
+    }
+
+    #texto5 {
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Exemplos de JavaScript</h1>
+
+    <div class="section">
+      <h2>Mudando Texto</h2>
+      <p id="texto">Mudando texto</p>
+      <button onclick="mudar()">Mudar texto</button>
+    </div>
+
+    <div class="section">
+      <h2>Evento de Clique</h2>
+      <p id="texto2">Mudando com evento</p>
+      <button id="botao">Mudar texto</button>
+    </div>
+
+    <div class="section">
+      <h2>Entrada de Texto</h2>
+      <input type="text" id="input" placeholder="Digite algo aqui...">
+      <p id="mensagem"></p>
+    </div>
+
+    <div class="section">
+      <h2>Contador de Cliques</h2>
+      <button id="clique">Clique aqui</button>
+      <p id="total">Total: 0</p>
+    </div>
+
+    <div class="section">
+      <h2>Hover de Texto</h2>
+      <p id="texto3">Passe o mouse para descobrir o segredo...</p>
+    </div>
+
+    <div class="section">
+      <h2>Efeito Hover em Imagem</h2>
+      <img src="palmeira.jpg" alt="Imagem" id="imagem">
+    </div>
+
+    <div class="section">
+      <h2>Efeito Extra</h2>
+      <p id="texto5">Passe o mouse aqui</p>
+    </div>
+  </div>
+
+  <script>
+    let texto = document.getElementById("texto")
+
+    function mudar() {
+      texto.innerText = "Trocou o texto"
+    }
+
+    let texto2 = document.getElementById("texto2")
+    let botao = document.getElementById("botao")
+
+    botao.addEventListener("click", function () {
+      texto2.innerText = "Mudou com evento"
+    })
+
+    let input = document.getElementById("input")
+    let mensagem = document.getElementById("mensagem")
+
+    input.addEventListener("input", function () {
+      mensagem.innerText = "Digitou: " + input.value
+    })
+
+    let clique = document.getElementById("clique")
+    let total = document.getElementById("total")
+    let contador = 0
+
+    clique.addEventListener("click", function () {
+      contador++
+      total.innerText = "Total: " + contador
+    })
+
+    let texto3 = document.getElementById("texto3")
+
+    texto3.addEventListener("mouseover", function () {
+      texto3.innerText = "Você achou o texto secreto!"
+    })
+
+    texto3.addEventListener("mouseout", function () {
+      texto3.innerText = "Passe o mouse para descobrir o segredo..."
+    })
+
+    let imagem = document.getElementById("imagem")
+
+    imagem.addEventListener("mouseover", function () {
+      imagem.src = "WhatsApp Image 2026-04-15 at 12.08.08 AM.jpeg"
+    })
+
+    imagem.addEventListener("mouseout", function () {
+      imagem.src = "palmeira.jpg"
+    })
+
+    let texto5 = document.getElementById("texto5")
+
+    texto5.addEventListener("mouseover", function () {
+      texto5.style.backgroundColor = "red"
+      texto5.style.color = "yellow"
+    })
+
+    texto5.addEventListener("mouseout", function () {
+      texto5.style.backgroundColor = "white"
+      texto5.style.color = "black"
+    })
+  </script>
+
+</body>
+</html>
+
