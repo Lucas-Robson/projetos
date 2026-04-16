@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portas Mágicas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #140028, #2a0050, #4a007d);
+            overflow: hidden;
+            color: white;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            filter: blur(100px);
+            top: -100px;
+            left: -100px;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,0,255,0.08);
+            border-radius: 50%;
+            filter: blur(100px);
+            bottom: -100px;
+            right: -100px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px #ff00ff;
+            z-index: 2;
+        }
+
+        .portas-container {
+            display: flex;
+            gap: 40px;
+            z-index: 2;
+        }
+
+        .portas-container img {
+            width: 300px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 25px rgba(255,0,255,0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .portas-container img:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 0 40px rgba(255,0,255,0.9);
+        }
+
+        #resultado {
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            font-size: 1.5rem;
+            text-align: center;
+            z-index: 2;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .portas-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .portas-container img {
+                width: 150px;
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Portas mágicas 🤡</h1>
+
+    <div class="portas-container">
+        <img id="porta1" src="porta fechada.png">
+        <img id="porta2" src="porta fechada.png">
+        <img id="porta3" src="porta fechada.png">
+    </div>
+
+    <h2 id="resultado">Abra uma porta e receba um prêmio!</h2>
+
+    <script>
+        let porta1 = document.getElementById('porta1');
+        let porta2 = document.getElementById('porta2');
+        let porta3 = document.getElementById('porta3');
+        let resultado = document.getElementById('resultado');
+
+        function fecharTodas() {
+            porta1.src = 'porta fechada.png';
+            porta2.src = 'porta fechada.png';
+            porta3.src = 'porta fechada.png';
+        }
+
+        function abrirPorta(porta, imagem, texto) {
+            fecharTodas();
+            porta.src = imagem;
+            resultado.textContent = texto;
+        }
+
+        porta1.addEventListener('click', function() {
+            abrirPorta(porta1, 'premiu.png', 'GANHOU O MELHOR PRÊMIO 😏');
+        });
+
+        porta2.addEventListener('click', function() {
+            abrirPorta(porta2, 'vc quer voltar a sorrir.png', 'BRUTAL');
+        });
+
+        porta3.addEventListener('click', function() {
+            abrirPorta(porta3, 'lost aura.png', 'PERDEU AURA ESTÁ FORA DO CLUBEX 😢');
+        });
+    </script>
+
+</body>
+</html>
+
