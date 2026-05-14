@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz de Conhecimentos Gerais</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Poppins:wght@400;500;600;700&family=Supermercado+One&display=swap" rel="stylesheet">
+
+<style>
+
+    .supermercado-one-regular {
+  font-family: "Supermercado One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+body {
+    font-family: "Supermercado One", sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f4c75 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-attachment: fixed;
+}
+
+#container {
+    background: linear-gradient(135deg, #1a2340 0%, #2d3e50 100%);
+    width: 700px;
+    max-width: 100%;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.2);
+    text-align: center;
+    animation: slideIn 0.6s ease-out;
+    border: 2px solid rgba(56, 189, 248, 0.3);
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: #38bdf8;
+    font-size: 2.5em;
+    text-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    letter-spacing: 1px;
+}
+
+#numeroPergunta {
+    color: #94a3b8;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#progresso {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#progressoBarra {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #0ea5e9, #06b6d4);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+#pergunta {
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    color: #f1f5f9;
+    line-height: 1.6;
+    animation: slideIn 0.5s ease-out;
+}
+
+#imagemPergunta {
+    width: 100%;
+    max-width: 400px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 30px;
+    border: 4px solid #38bdf8;
+    box-shadow: 0 10px 40px rgba(56, 189, 248, 0.3);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    animation: slideIn 0.5s ease-out 0.1s backwards;
+}
+
+#imagemPergunta:hover {
+    transform: scale(1.05) rotateZ(1deg);
+    filter: brightness(1.1);
+    box-shadow: 0 15px 50px rgba(56, 189, 248, 0.5);
+}
+
+#respostas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-out 0.2s backwards;
+}
+
+#respostas button {
+    padding: 16px 20px;
+    border: 2px solid #38bdf8;
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    color: white;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(30, 64, 175, 0.3);
+}
+
+#respostas button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+}
+
+#respostas button:hover::before {
+    left: 100%;
+}
+
+#respostas button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transform: translateY(-3px) scale(1.02);
+    border-color: #60a5fa;
+    box-shadow: 0 10px 30px rgba(30, 64, 175, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+#respostas button:active {
+    transform: translateY(-1px);
+}
+
+#resultado {
+    font-size: 1.3em;
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 30px;
+    animation: pulse 0.6s ease;
+}
+
+#resultado.acertou {
+    color: #22c55e;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+#resultado.errou {
+    color: #ef4444;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+#proxima {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    padding: 16px 30px;
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: "Supermercado One", sans-serif;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(34, 197, 94, 0.3);
+}
+
+#proxima:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.5);
+}
+
+#proxima:active {
+    transform: translateY(-1px);
+}
+
+/* Estilos para resultado final */
+#container.resultado-final {
+    text-align: center;
+}
+
+#container.resultado-final h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#container.resultado-final h2 {
+    color: #94a3b8;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#pontuacaoFinal {
+    font-size: 4em;
+    color: #38bdf8;
+    margin: 30px 0;
+    text-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+    animation: slideIn 0.6s ease-out;
+}
+
+#container.resultado-final button {
+    padding: 18px 40px;
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+    color: #111827;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: "Supermercado One", sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.3);
+}
+
+#container.resultado-final button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    #container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    #pergunta {
+        font-size: 1.2em;
+    }
+
+    #imagemPergunta {
+        height: 200px;
+        max-width: 100%;
+    }
+
+    #respostas button {
+        padding: 14px 16px;
+        font-size: 0.95em;
+    }
+
+    #pontuacaoFinal {
+        font-size: 3em;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+<h1>🎯 Quiz</h1>
+
+<div id="numeroPergunta"></div>
+
+<div id="progresso">
+    <div id="progressoBarra"></div>
+</div>
+
+<h2 id="pergunta"></h2>
+
+<img id="imagemPergunta" src="" alt="Imagem da pergunta">
+
+<div id="respostas"></div>
+
+<p id="resultado"></p>
+
+<button id="proxima" onclick="proximaPergunta()">
+Próxima Pergunta
+</button>
+
+</div>
+
+<script>
+
+let perguntas = [
+
+{
+    pergunta: "Qual é o maior planeta do Sistema Solar?",
+    imagem: "img/jupiter.jpg",
+    respostas: ["Terra", "Marte", "Júpiter", "Saturno"],
+    correta: 2
+},
+
+{
+    pergunta: "Quem pintou a Mona Lisa?",
+    imagem: "img/monalisa.jpg",
+    respostas: ["Van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"],
+    correta: 1
+},
+
+{
+    pergunta: "Qual é a capital do Brasil?",
+    imagem: "img/brasilia.jpg",
+    respostas: ["Rio de Janeiro", "Brasília", "São Paulo", "Salvador"],
+    correta: 1
+},
+
+{
+    pergunta: "Quantos continentes existem no mundo?",
+    imagem: "img/continentes.jpg",
+    respostas: ["5", "6", "7", "8"],
+    correta: 2
+},
+
+{
+    pergunta: "Quem foi Anita Malfatti?",
+    imagem: "img/anita.jpg",
+    respostas: ["Cantora", "Atriz", "Pintora", "Escritora"],
+    correta: 2
+},
+
+{
+    pergunta: "Qual estilo musical nasceu no Rio de Janeiro?",
+    imagem: "img/bossanova.jpg",
+    respostas: ["Arrastão", "Bossa Nova", "Forró", "Funk"],
+    correta: 1
+},
+
+{
+    pergunta: "Qual cantor brasileiro é conhecido pela música 'Evidências'?",
+    imagem: "img/evidencias.jpg",
+    respostas: ["Pericles", "Daniel", "Chitãozinho & Xororó", "Leonardo"],
+    correta: 2
+},
+
+{
+    pergunta: "Qual instrumento é muito usado no samba?",
+    imagem: "img/pandeiro.jpg",
+    respostas: ["Violino", "Bateria", "Pandeiro", "Flauta"],
+    correta: 2
+},
+
+{
+    pergunta: "Tiaguinho ficou famoso em qual grupo de pagode?",
+    imagem: "img/tiaguinho.jpg",
+    respostas: ["Sorriso Maroto", "Exaltasamba", "Revelação", "Jeito Moleque"],
+    correta: 1
+},
+
+{
+    pergunta: "Quem foi um dos maiores compositores da MPB?",
+    imagem: "img/chico.jpg",
+    respostas: ["Machado de Assis", "Chico Buarque", "Pelé", "Ayrton Senna"],
+    correta: 1
+}
+
+]
+
+let perguntaAtual = 0
+let pontuacao = 0
+
+function mostrarPergunta(){
+
+    let pergunta = perguntas[perguntaAtual]
+
+    document.getElementById("numeroPergunta").innerText = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`
+
+    document.getElementById("pergunta").innerText = pergunta.pergunta
+
+    document.getElementById("imagemPergunta").src = pergunta.imagem
+
+    // Atualizar barra de progresso
+    let percentual = ((perguntaAtual) / perguntas.length) * 100
+    document.getElementById("progressoBarra").style.width = percentual + "%"
+
+    let respostasDiv = document.getElementById("respostas")
+
+    respostasDiv.innerHTML = ""
+
+    pergunta.respostas.forEach((resposta,index)=>{
+
+        respostasDiv.innerHTML += `
+        <button onclick="verificarResposta(${index})">
+        ${resposta}
+        </button>
+        `
+    })
+
+}
+
+function verificarResposta(index){
+
+    let pergunta = perguntas[perguntaAtual]
+
+    let resultado = document.getElementById("resultado")
+
+    if(index == pergunta.correta){
+
+        resultado.innerText = "✓ Acertou!"
+        resultado.className = "acertou"
+
+        pontuacao++
+
+    }else{
+
+        resultado.innerText = "✗ Errou!"
+        resultado.className = "errou"
+
+    }
+
+}
+
+function proximaPergunta(){
+
+    perguntaAtual++
+
+    if(perguntaAtual < perguntas.length){
+
+        mostrarPergunta()
+
+        document.getElementById("resultado").innerText = ""
+
+    }else{
+
+        mostrarResultadoFinal()
+
+    }
+
+}
+
+function mostrarResultadoFinal(){
+
+    document.getElementById("container").className = "resultado-final"
+
+    document.getElementById("container").innerHTML = `
+
+    <h1>🏆 Parabéns!</h1>
+
+    <h2>Sua pontuação foi:</h2>
+
+    <div id="pontuacaoFinal">${pontuacao} / ${perguntas.length}</div>
+
+    <p style="color: #94a3b8; font-size: 1.1em; margin: 20px 0;">
+    ${obterMensagem(pontuacao)}
+    </p>
+
+    <button onclick="location.reload()" style="margin-top: 20px;">
+    🔄 Jogar Novamente
+    </button>
+
+    `
+}
+
+function obterMensagem(score){
+
+    let percentual = (score / perguntas.length) * 100
+
+    if(percentual === 100){
+        return "Perfeito! Você é um gênio! 🎓"
+    }else if(percentual >= 80){
+        return "Excelente! Você sabe muito! 👏"
+    }else if(percentual >= 60){
+        return "Bom desempenho! Você acertou a maioria! ✨"
+    }else if(percentual >= 40){
+        return "Você consegue melhorar! Continue tentando! 💪"
+    }else{
+        return "Não desista! Tente novamente! 🚀"
+    }
+
+}
+
+mostrarPergunta()
+
+</script>
+
+</body>
+</html>
