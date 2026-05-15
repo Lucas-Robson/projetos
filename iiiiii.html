@@ -1,0 +1,173 @@
+html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercícios DOM e Math</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: #111;
+    color: white;
+    padding: 20px;
+}
+
+div{
+    background: #1e1e1e;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+input{
+    padding: 10px;
+    margin: 5px;
+    width: 200px;
+}
+
+button{
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: #800000;
+    color: white;
+    border-radius: 5px;
+}
+
+p{
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div>
+    <h2>1 - Arredondar Número</h2>
+    <input type="number" id="numero1">
+    <button onclick="arredondar()">Arredondar</button>
+    <p id="resultado1"></p>
+</div>
+
+<div>
+    <h2>2 - Arredondar para Baixo</h2>
+    <input type="number" id="numero2">
+    <button onclick="baixo()">Arredondar para baixo</button>
+    <p id="resultado2"></p>
+</div>
+
+<div>
+    <h2>3 - Arredondar para Cima</h2>
+    <input type="number" id="numero3">
+    <button onclick="cima()">Arredondar para cima</button>
+    <p id="resultado3"></p>
+</div>
+
+<div>
+    <h2>4 - Raiz Quadrada</h2>
+    <input type="number" id="numero4">
+    <button onclick="raiz()">Calcular raiz</button>
+    <p id="resultado4"></p>
+</div>
+
+<div>
+    <h2>5 - Potência</h2>
+    <input type="number" id="base" placeholder="Base">
+    <input type="number" id="expoente" placeholder="Expoente">
+    <button onclick="potencia()">Calcular potência</button>
+    <p id="resultado5"></p>
+</div>
+
+<div>
+    <h2>6 - Maior Número</h2>
+    <input type="number" id="maior1">
+    <input type="number" id="maior2">
+    <input type="number" id="maior3">
+    <button onclick="maior()">Descobrir maior número</button>
+    <p id="resultado6"></p>
+</div>
+
+<div>
+    <h2>7 - Menor Número</h2>
+    <input type="number" id="menor1">
+    <input type="number" id="menor2">
+    <input type="number" id="menor3">
+    <button onclick="menor()">Descobrir menor número</button>
+    <p id="resultado7"></p>
+</div>
+
+<div>
+    <h2>8 - Sorteio de Número</h2>
+    <button onclick="sortear()">Sortear número</button>
+    <p id="resultado8"></p>
+</div>
+
+<div>
+    <h2>9 - Simulador de Dado</h2>
+    <button onclick="dado()">Lançar dado</button>
+    <p id="resultado9"></p>
+</div>
+
+<script>
+
+function arredondar(){
+    let numero = Number(document.getElementById("numero1").value)
+    document.getElementById("resultado1").innerHTML = Math.round(numero)
+}
+
+function baixo(){
+    let numero = Number(document.getElementById("numero2").value)
+    document.getElementById("resultado2").innerHTML = Math.floor(numero)
+}
+
+function cima(){
+    let numero = Number(document.getElementById("numero3").value)
+    document.getElementById("resultado3").innerHTML = Math.ceil(numero)
+}
+
+function raiz(){
+    let numero = Number(document.getElementById("numero4").value)
+    document.getElementById("resultado4").innerHTML = Math.sqrt(numero)
+}
+
+function potencia(){
+    let base = Number(document.getElementById("base").value)
+    let expoente = Number(document.getElementById("expoente").value)
+
+    document.getElementById("resultado5").innerHTML = Math.pow(base, expoente)
+}
+
+function maior(){
+    let n1 = Number(document.getElementById("maior1").value)
+    let n2 = Number(document.getElementById("maior2").value)
+    let n3 = Number(document.getElementById("maior3").value)
+
+    document.getElementById("resultado6").innerHTML = Math.max(n1, n2, n3)
+}
+
+function menor(){
+    let n1 = Number(document.getElementById("menor1").value)
+    let n2 = Number(document.getElementById("menor2").value)
+    let n3 = Number(document.getElementById("menor3").value)
+
+    document.getElementById("resultado7").innerHTML = Math.min(n1, n2, n3)
+}
+
+function sortear(){
+    let numero = Math.floor(Math.random() * 11)
+
+    document.getElementById("resultado8").innerHTML = numero
+}
+
+function dado(){
+    let numero = Math.floor(Math.random() * 6) + 1
+
+    document.getElementById("resultado9").innerHTML = numero
+}
+
+</script>
+
+</body>
+</html>
