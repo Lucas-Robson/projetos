@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.div {
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.ativo {
+    background-color: lightblue;
+}
+
+.rosa {
+    background-color: pink;
+    color: deeppink;
+}
+
+.menu {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+<h2>1</h2>
+
+<div class="div">Div 1</div>
+<div class="div">Div 2</div>
+<div class="div">Div 3</div>
+
+<button id="cor">Trocar cor</button>
+
+<h2>2</h2>
+
+<p class="texto">Parágrafo</p>
+<div class="texto">Outra div</div>
+
+<button id="add">Adicionar classe</button>
+
+<h2>3 4 5 6 7</h2>
+
+<div class="caixa">Clique aqui</div>
+<div class="caixa">Clique aqui</div>
+<div class="caixa">Clique aqui</div>
+
+<h2>8</h2>
+
+<div class="unico">Item 1</div>
+<div class="unico">Item 2</div>
+<div class="unico">Item 3</div>
+<div class="unico">Item 4</div>
+
+<h2>9</h2>
+
+<div class="menu">Home</div>
+<div class="menu">Sobre</div>
+<div class="menu">Contato</div>
+<div class="menu">Login</div>
+
+<script>
+
+// 1
+let divs = document.querySelectorAll(".div")
+
+document.getElementById("cor").addEventListener("click", function() {
+
+    divs.forEach(function(item) {
+        item.style.backgroundColor = "yellow"
+    })
+
+})
+
+// 2
+let textos = document.querySelectorAll(".texto")
+
+document.getElementById("add").addEventListener("click", function() {
+
+    textos.forEach(function(item) {
+        item.classList.add("ativo")
+    })
+
+})
+
+// 3 4 5 6 7
+let caixas = document.querySelectorAll(".caixa")
+
+caixas.forEach(function(item) {
+
+    item.addEventListener("click", function() {
+
+        console.log("clicou")
+
+        item.classList.toggle("rosa")
+
+    })
+
+})
+
+// 8
+let unico = document.querySelectorAll(".unico")
+
+unico.forEach(function(item) {
+
+    item.addEventListener("click", function() {
+
+        unico.forEach(function(outro) {
+            outro.classList.remove("ativo")
+        })
+
+        item.classList.add("ativo")
+
+    })
+
+})
+
+// 9
+let menu = document.querySelectorAll(".menu")
+
+menu.forEach(function(item) {
+
+    item.addEventListener("click", function() {
+
+        menu.forEach(function(outro) {
+            outro.classList.remove("ativo")
+        })
+
+        item.classList.add("ativo")
+
+    })
+
+})
+
+</script>
+
+</body>
+</html>
