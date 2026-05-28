@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrosséis</title>
+
+    <style>
+
+        body{
+            background-color: #141e30;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .carrossel{
+            width: 350px;
+            position: relative;
+            overflow: hidden;
+            margin: 30px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        img{
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+
+        .ativa{
+            display: block;
+        }
+
+        button{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        h2{
+            color: black;
+        }
+
+        p{
+            color: green;
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- PRODUTO -->
+    <h1>Anúncio de Produto</h1>
+
+    <div class="carrossel">
+
+        <img src="alpino.jpg" class="produto ativa">
+
+        <img src="monser branco.jpg" class="produto">
+
+        <img src="nescau.webp" class="produto">
+
+        <h2>dell vale</h2>
+
+        <p>R$ 499,90</p>
+
+    </div>
+
+    <button onclick="voltar()"> < </button>
+
+    <button onclick="proximo()"> > </button>
+
+
+
+    <!-- CINEMA -->
+    <h1>Últimos lançamentos</h1>
+
+    <div class="carrossel">
+
+        <img src="https://imgs.search.brave.com/9xkkEkoH3Wk_NOr_d-sZKpZpcCBmYFq7591-Pt7VdXc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvcHQvdGh1bWIv/OS85YS9TcGlkZXIt/TWFuX0JyYW5kX05l/d19EYXlfcG9zdGVy/LmpwZy81MTJweC1T/cGlkZXItTWFuX0Jy/YW5kX05ld19EYXlf/cG9zdGVyLmpwZw" class="filme ativa">
+
+        <img src="data:image/jpeg;base64,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" class="filme">
+
+        <img src="https://static3.moviehub.com.br/fotos/filmes/poster/16692_medio.jpg" class="filme">
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROoNJdxUFclcH-NaUtoiL192Tedi3Vw5XnsA&s" class="filme">
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3tsH3h8wyyVnCc4CPMr5tczKge5pEjM8dCw&s" class="filme">
+
+    </div>
+
+
+
+    <script>
+
+        // PRODUTO
+        let imagens = document.querySelectorAll('.produto')
+
+        let indice = 0
+
+        function mostrarImagens(){
+
+            imagens.forEach(function(img){
+                img.classList.remove('ativa')
+            })
+
+            imagens[indice].classList.add('ativa')
+        }
+
+        function proximo(){
+
+            indice++
+
+            if(indice >= imagens.length){
+                indice = 0
+            }
+
+            mostrarImagens()
+        }
+
+        function voltar(){
+
+            indice--
+
+            if(indice < 0){
+                indice = imagens.length - 1
+            }
+
+            mostrarImagens()
+        }
+
+
+
+        // FILMES
+        let filmes = document.querySelectorAll('.filme')
+
+        let indiceFilme = 0
+
+        function mostrarFilmes(){
+
+            filmes.forEach(function(img){
+                img.classList.remove('ativa')
+            })
+
+            filmes[indiceFilme].classList.add('ativa')
+        }
+
+        function avancarAutomatico(){
+
+            indiceFilme++
+
+            if(indiceFilme >= filmes.length){
+                indiceFilme = 0
+            }
+
+            mostrarFilmes()
+        }
+
+        setInterval(avancarAutomatico, 3000)
+
+    </script>
+
+</body>
+
+</html>
