@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primor Joias - Linha Rose</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f9fc;
+    padding-top:120px;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#ACE0F8;
+    box-shadow:0 12px 28px rgba(10, 25, 69, 0.25);
+    border-bottom:1px solid rgba(255,255,255,0.12);
+    z-index:1000;
+    padding:10px 18px 12px;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:8px;
+
+}
+
+.logo img{
+    width:180px;
+    max-width:100%;
+    display:block;
+    margin:0 auto;
+    border-radius:999px;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    text-decoration:none;
+    color:#17348c;
+    font-weight:700;
+    font-size:0.95rem;
+    padding:8px 12px;
+    border-radius:999px;
+    transition:all .25s ease;
+}
+
+nav a:hover{
+    color:#081f66;
+    background:rgba(255,255,255,0.95);
+    transform:translateY(-1px);
+    box-shadow:0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* PESQUISA */
+
+.pesquisa{
+    text-align:center;
+    margin:30px auto;
+}
+
+.pesquisa input{
+    width:80%;
+    max-width:600px;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    outline:none;
+}
+
+#resultado{
+    margin-top:10px;
+    color:#1f3fa6;
+    font-weight:bold;
+}
+
+/* CARROSSEL */
+
+.carrossel{
+    width:100vw;
+    max-width:100%;
+    height:70vh;
+    margin:0;
+    overflow:hidden;
+    border-radius:0;
+    box-shadow:none;
+}
+
+.slides{
+    display:flex;
+    width:300%;
+    height:100%;
+    transition:.5s;
+}
+
+.slide{
+    width:100%;
+    position:relative;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.texto-slide{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    text-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+
+.texto-slide h1{
+    font-size:60px;
+}
+
+.texto-slide p{
+    font-size:22px;
+}
+
+/* TITULOS */
+
+h2{
+    text-align:center;
+    color:#1f3fa6;
+    margin:50px 0 25px;
+    font-size:40px;
+}
+
+/* PRODUTOS */
+
+.produtos{
+    width:90%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:320px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.card h3{
+    text-align:center;
+    padding:20px;
+    color:#1f3fa6;
+}
+
+/* NOSSO CLIENTES */
+
+.nossos-clientes{
+    width:90%;
+    max-width:1100px;
+    margin:60px auto 0;
+    background:white;
+    border-radius:24px;
+    box-shadow:0 12px 28px rgba(15, 35, 90, 0.10);
+    overflow:hidden;
+}
+
+.clientes-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+}
+
+.clientes-texto{
+    padding:35px;
+}
+
+.clientes-texto h2{
+    margin:0 0 15px;
+    text-align:left;
+    font-size:30px;
+}
+
+.clientes-texto p{
+    color:#4b5b78;
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.clientes-imagem{
+    position:relative;
+    min-height:320px;
+    overflow:hidden;
+    background:#eef4fb;
+}
+
+.clientes-imagem .slide-cliente{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity .6s ease;
+}
+
+.clientes-imagem .slide-cliente.active{
+    opacity:1;
+}
+
+.clientes-imagem img{
+    width:100%;
+    height:100%;
+    min-height:320px;
+    object-fit:cover;
+    object-position:center center;
+    display:block;
+}
+
+.clientes-imagem .slide-cliente:first-child img{
+    object-position:center 22%;
+    transform:scale(1.03);
+}
+
+.clientes-dots{
+    position:absolute;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:8px;
+}
+
+.cliente-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.7);
+    border:1px solid rgba(255,255,255,0.9);
+    cursor:pointer;
+}
+
+.cliente-dot.active{
+    background:#1f3fa6;
+}
+
+/* LOCALIZAÇÃO */
+
+.localizacao{
+    width:90%;
+    max-width:1100px;
+    margin:60px auto;
+    text-align:center;
+}
+
+.localizacao p{
+    margin-bottom:10px;
+}
+
+iframe{
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* FORM */
+
+.formulario{
+    width:90%;
+    max-width:600px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+.formulario input{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.formulario button{
+    width:100%;
+    padding:15px;
+    background:#1f3fa6;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.formulario button:hover{
+    background:#17348c;
+}
+
+/* FAQ */
+
+.faq{
+    width:90%;
+    max-width:900px;
+    margin:50px auto;
+}
+
+.pergunta{
+    background:#1f3fa6;
+    color:white;
+    padding:15px;
+    margin-top:10px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.resposta{
+    background:#f1f1f1;
+    padding:15px;
+    display:none;
+    border-radius:0 0 10px 10px;
+}
+
+/* FOOTER */
+
+footer{
+    background:#1f3fa6;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:50px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+    <div class="logo">
+        <!-- COLOQUE SUA LOGO -->
+        <img src="logo.png" alt="Primor Joias">
+    </div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#linhaRose">Linha Rose</a>
+        <a href="#localizacao">Localização</a>
+        <a href="#lista">Lista de Espera</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+
+</header>
+
+<section id="inicio">
+
+    <div class="carrossel">
+
+        <div class="slides" id="slides">
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=1200">
+                <div class="texto-slide">
+                    <h1>Coleção Rose</h1>
+                    <p>Elegância em cada detalhe</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=1200">
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=1200">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="pesquisa">
+        <input id="pesquisa" type="text" placeholder="Pesquisar joias...">
+        <p id="resultado"></p>
+    </div>
+
+</section>
+
+<section id="linhaRose">
+
+    <h2>Linha Rose</h2>
+
+    <div class="produtos">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600">
+            <h3>Anéis Rose</h3>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=600">
+            <h3>Pulseiras Rose</h3>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600">
+            <h3>Colares Rose</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="nossos-clientes">
+    <div class="clientes-grid">
+        <div class="clientes-texto">
+            <h2>Nossos Clientes</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.</p>
+            <p>Vivamus ac urna eu felis dapibus condimentum. Nam nec ante sed lacinia, cursus ipsum et, ultrices nulla. Tudo pensado para destacar a beleza e a sofisticação das joias.</p>
+        </div>
+        <div class="clientes-imagem" id="clientesCarousel">
+            <div class="slide-cliente active">
+                <img src="luiz.jpg" alt="Cliente com joias 1">
+            </div>
+            <div class="slide-cliente">
+                <img src="8a48a6ff-4be6-4dd9-8ff2-8b69eae6246f.png" alt="Cliente com joias 2">
+            </div>
+            <div class="slide-cliente">
+                <img src="michael.jpg" alt="Cliente com joias 3">
+            </div>
+            <div class="clientes-dots" id="clientesDots"></div>
+        </div>
+    </div>
+</section>
+
+<section id="localizacao" class="localizacao">
+
+    <h2>Localização</h2>
+
+    <p>Internacional Shopping Guarulhos</p>
+    <p>Rua Engenheiro Camilo Olivetti, 295</p>
+
+    <iframe
+    src="https://www.google.com/maps?q=Internacional+Shopping+Guarulhos&output=embed"
+    width="100%"
+    height="450"
+    style="border:0;"
+    loading="lazy">
+    </iframe>
+
+</section>
+
+<section id="lista" class="formulario">
+
+    <h2>Lista de Espera</h2>
+
+    <form>
+
+        <input type="text" placeholder="Nome" required>
+
+        <input type="tel" placeholder="Telefone" required>
+
+        <input type="email" placeholder="E-mail" required>
+
+        <button type="submit">
+            Entrar na Lista
+        </button>
+
+    </form>
+
+</section>
+
+<section id="faq" class="faq">
+
+    <h2>Perguntas Frequentes</h2>
+
+    <div class="faq-item">
+        <div class="pergunta">
+            A linha Rose é feita em ouro Rose?
+        </div>
+
+        <div class="resposta">
+            Sim, a coleção é composta por joias em ouro Rose.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="pergunta">
+            Como participar da lista de espera?
+        </div>
+
+        <div class="resposta">
+            Basta preencher o formulário com seus dados.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="pergunta">
+            Onde fica a loja?
+        </div>
+
+        <div class="resposta">
+            Internacional Shopping Guarulhos, Rua Engenheiro Camilo Olivetti, 295.
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    Primor Joias e Acessórios
+</footer>
+
+<script>
+
+/* CARROSSEL */
+
+let atual = 0
+
+const slides = document.getElementById("slides")
+
+setInterval(function(){
+
+    atual++
+
+    if(atual > 2){
+        atual = 0
+    }
+
+    slides.style.transform =
+    `translateX(-${atual * 33.333}%)`
+
+},4000)
+
+/* PESQUISA */
+
+let pesquisa =
+document.getElementById("pesquisa")
+
+pesquisa.addEventListener("keyup", function(){
+
+    let texto =
+    pesquisa.value.toLowerCase()
+
+    let cards =
+    document.querySelectorAll(".card")
+
+    let encontrados = 0
+
+    cards.forEach(function(card){
+
+        let titulo =
+        card.querySelector("h3")
+        .textContent.toLowerCase()
+
+        if(titulo.includes(texto)){
+
+            card.style.display = "block"
+            encontrados++
+
+        }else{
+
+            card.style.display = "none"
+
+        }
+
+    })
+
+    document.getElementById("resultado")
+    .innerText =
+    encontrados +
+    " resultado(s) encontrado(s)"
+
+})
+
+/* FAQ */
+
+let perguntas =
+document.querySelectorAll(".pergunta")
+
+perguntas.forEach(function(pergunta){
+
+    pergunta.addEventListener("click",
+    function(){
+
+        let resposta =
+        pergunta.nextElementSibling
+
+        if(resposta.style.display
+            === "block"){
+
+            resposta.style.display =
+            "none"
+
+        }else{
+
+            resposta.style.display =
+            "block"
+
+        }
+
+    })
+
+})
+
+const clientesSlides = document.querySelectorAll('.slide-cliente')
+const clientesDots = document.getElementById('clientesDots')
+let clienteAtual = 0
+
+clientesSlides.forEach((_, index) => {
+    const dot = document.createElement('button')
+    dot.className = 'cliente-dot' + (index === 0 ? ' active' : '')
+    dot.type = 'button'
+    dot.setAttribute('aria-label', `Mostrar imagem ${index + 1}`)
+    dot.addEventListener('click', () => {
+        mostrarSlideCliente(index)
+    })
+    clientesDots.appendChild(dot)
+})
+
+function mostrarSlideCliente(index) {
+    clienteAtual = index
+    clientesSlides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index)
+    })
+
+    document.querySelectorAll('.cliente-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index)
+    })
+}
+
+setInterval(() => {
+    clienteAtual = (clienteAtual + 1) % clientesSlides.length
+    mostrarSlideCliente(clienteAtual)
+}, 3500)
+
+</script>
+
+</body>
+</html>
