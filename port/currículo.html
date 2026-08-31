@@ -1,0 +1,398 @@
+<!-- Documento HTML5 -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Configurações básicas da página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Lucas Robson — Técnico em Desenvolvimento de Sistemas.">
+  <title>Lucas Robson — Portfólio</title>
+
+  <!-- Fontes usadas no projeto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Ícones das tecnologias -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="favicon.svg">
+  <!-- Fallbacks para navegadores que não aceitam SVG como favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="favicon-180x180.png">
+  <meta name="theme-color" content="#6b2737">
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER GRANDE
+       Esta é uma área INDEPENDENTE do hero.
+       O header ocupa a parte superior da página.
+       ========================================================= -->
+  <header class="site-header" id="inicio">
+
+    <!-- Logo/nome central do header -->
+    <a href="#inicio" class="header-logo" aria-label="Lucas Robson - início">
+      <span class="header-logo-mark">LR</span>
+      <span class="header-logo-name">LUCAS<br>ROBSON</span>
+    </a>
+
+    <!-- Menu principal -->
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#tecnologias">Tecnologias</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#formacao">Formação</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <!-- Botão que aparece no celular -->
+    <button class="header-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+  </header>
+
+  <!-- =========================================================
+       HERO
+       Fica ABAIXO do header grande.
+       ========================================================= -->
+  <section class="hero" aria-label="Apresentação">
+
+    <!-- Área principal do hero -->
+    <div class="hero-frame">
+
+      <!-- Texto de apresentação -->
+      <div class="hero-copy reveal">
+        <div class="mini-title">
+          <span></span>
+          PORTFÓLIO
+        </div>
+
+        <h1>LUCAS<br><em>ROBSON</em></h1>
+
+        <div class="hero-role">
+          <strong>TÉCNICO EM DESENVOLVIMENTO DE SISTEMAS</strong>
+          <span>EM FORMAÇÃO</span>
+        </div>
+
+        <p>
+          Estudante de Tecnologia da Informação em busca da primeira oportunidade
+          na área de desenvolvimento.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projetos" class="button burgundy">VER PROJETOS <span>↗</span></a>
+          <a href="#contato" class="button outline">CONTATO <span>↗</span></a>
+        </div>
+      </div>
+
+      <!-- Projeto em destaque -->
+      <div class="hero-showcase reveal">
+        <div class="showcase-label">01 / PROJETO EM DESTAQUE</div>
+
+        <div class="showcase-browser">
+          <div class="browser-top">
+            <div class="browser-dots"><i></i><i></i><i></i></div>
+            <span>DONATE IN SAFE / WEBSITE</span>
+          </div>
+
+          <div class="browser-screen">
+            <div class="screen-brand">DONATE<br><em>IN SAFE</em></div>
+
+            <div class="screen-copy">
+              <small>TECNOLOGIA COM PROPÓSITO.</small>
+              <strong>DOAÇÕES<br>SEGURAS.</strong>
+              <span>CONHEÇA O PROJETO →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-note">
+          DESENVOLVIMENTO WEB · HTML · CSS · JAVA
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Rodapé visual do hero -->
+    <div class="hero-footer">
+      <span>SÃO PAULO · BRASIL</span>
+      <span>DESENVOLVIMENTO · UI/UX · TECNOLOGIA</span>
+      <span>SCROLL ↓</span>
+    </div>
+
+  </section>
+
+  <main>
+    <!-- SOBRE -->
+    <!-- SOBRE: apresentação rápida e informações principais do candidato. -->
+    <section class="section" id="sobre">
+      <div class="section-title reveal">
+        <p>SOBRE MIM</p>
+        <h2>DESENVOLVEDOR<br><em>EM FORMAÇÃO.</em></h2>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-info reveal">
+          <div><span>NOME</span><strong>Lucas Robson</strong></div>
+          <div><span>IDADE</span><strong>18 anos</strong></div>
+          <div><span>LOCAL</span><strong>Suzano — São Paulo</strong></div>
+          <div><span>OBJETIVO</span><strong>Primeira oportunidade em TI</strong></div>
+        </div>
+        <div class="about-text reveal">
+          <p class="big">
+            Quero transformar conhecimento em projetos reais e continuar
+            evoluindo dentro da área de tecnologia.
+          </p>
+          <p>
+            Sou estudante de Desenvolvimento de Sistemas, com interesse em
+            desenvolvimento de software, interfaces e criação de soluções
+            digitais. Gosto de aprender na prática e encarar cada projeto como
+            uma forma de melhorar minhas habilidades.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECNOLOGIAS -->
+    <!-- TECNOLOGIAS: cards grandes com ícones e hover vinho. -->
+    <section class="section tech-section" id="tecnologias">
+      <div class="section-title reveal">
+        <p>CONHECIMENTOS</p>
+        <h2>TECNOLOGIAS<br><em>QUE UTILIZO.</em></h2>
+      </div>
+
+      <div class="tech-grid">
+        <article class="tech-card reveal"><i class="devicon-html5-plain"></i><div><b>HTML5</b><small>Front-end</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-css3-plain"></i><div><b>CSS3</b><small>Front-end</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-javascript-plain"></i><div><b>JavaScript</b><small>Linguagem</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-python-plain"></i><div><b>Python</b><small>Linguagem</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-java-plain"></i><div><b>Java</b><small>Linguagem</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-nodejs-plain"></i><div><b>Node.js</b><small>Back-end</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-mysql-plain"></i><div><b>MySQL</b><small>Banco de dados</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-firebase-plain"></i><div><b>Firebase</b><small>Banco de dados</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-react-original"></i><div><b>React Native</b><small>Mobile</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><i class="devicon-figma-plain"></i><div><b>Figma</b><small>UI / UX</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><span class="letter-icon">S</span><div><b>Scrum</b><small>Metodologia</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><span class="letter-icon">K</span><div><b>Kanban</b><small>Metodologia</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><span class="letter-icon">X</span><div><b>Excel</b><small>Office</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><span class="letter-icon">W</span><div><b>Word</b><small>Office</small></div><span>↗</span></article>
+        <article class="tech-card reveal"><span class="letter-icon">P</span><div><b>PowerPoint</b><small>Office</small></div><span>↗</span></article>
+      </div>
+    </section>
+
+    <!-- PROJETOS CARROSSEL -->
+    <!-- PROJETOS: carrossel horizontal; os slides 02–05 são espaços prontos para novos projetos. -->
+    <section class="section projects-section" id="projetos">
+      <div class="project-heading">
+        <div class="section-title reveal">
+          <p>PROJETOS</p>
+          <h2>O QUE EU<br><em>JÁ CONSTRUÍ.</em></h2>
+        </div>
+        <div class="carousel-controls reveal">
+          <button id="prevProject" aria-label="Projeto anterior">←</button>
+          <span id="projectCounter">01 / 02</span>
+          <button id="nextProject" aria-label="Próximo projeto">→</button>
+        </div>
+      </div>
+
+      <div class="carousel-window">
+        <div class="project-track" id="projectTrack">
+
+          <!-- PROJETO 01 — JÁ PREENCHIDO -->
+          <article class="project-slide">
+            <div class="project-visual">
+              <div class="mini-browser">
+                <div class="browser-top"><div class="browser-dots"><i></i><i></i><i></i></div><span>donate-in-safe</span></div>
+                <div class="donate-preview">
+                  <small>DONATE</small>
+                  <strong>IN SAFE</strong>
+                  <p>Tecnologia com propósito.</p>
+                  <button>FAZER DOAÇÃO</button>
+                </div>
+              </div>
+            </div>
+            <div class="project-data">
+              <div>
+                <p>WEB DEVELOPMENT · PROJETO FINAL</p>
+                <h3>Donate in Safe</h3>
+              </div>
+              <div>
+                <p class="project-desc">
+                  Desenvolvimento de uma ONG fictícia com foco em doações seguras,
+                  criada como projeto final do semestre.
+                </p>
+                <div class="tags"><span>HTML</span><span>CSS</span><span>JAVA</span></div>
+                <a href="https://guilhermelima33.github.io/html/trabalhoDezembro/home.html" target="_blank">VISUALIZAR PROJETO ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-slide primor-slide">
+  <div class="project-visual primor-project">
+    <div class="mini-browser">
+      <div class="browser-top">
+        <div class="browser-dots"><i></i><i></i><i></i></div>
+        <span>primor-joias / joia.html</span>
+      </div>
+
+      <div class="primor-preview">
+        <div class="primor-logo">PRIMOR</div>
+
+        <div class="primor-menu">
+          INÍCIO · LINHA ROSE · LOCALIZAÇÃO · LISTA DE ESPERA · FAQ
+        </div>
+
+        <div class="primor-title">
+          <small>LOJA DE JOIAS</small>
+          <strong>PRIMOR</strong>
+          <span>Elegância em cada detalhe.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-data">
+    <div>
+      <p>WEB DESIGN · DESAFIO ACADÊMICO</p>
+      <h3>Loja de Joias Primor</h3>
+    </div>
+
+    <div>
+      <p class="project-desc">
+        Site desenvolvido como um desafio proposto pela professora,
+        com foco em identidade visual, navegação e experiência do usuário
+        para uma loja de joias.
+      </p>
+
+      <div class="tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>UI/UX</span>
+      </div>
+
+      <a href="https://lucas-robson.github.io/projetos/joia/joia.html"
+         target="_blank"
+         rel="noopener noreferrer">
+        VISUALIZAR PROJETO ↗
+      </a>
+    </div>
+  </div>
+</article>
+        </div>
+      </div>
+
+      <div class="carousel-dots" id="projectDots"></div>
+    </section>
+
+    <!-- CURSOS -->
+    <!-- CURSOS/CERTIFICAÇÕES: cards filtráveis por ano. O técnico do SENAI também aparece aqui. -->
+    <section class="section courses-section" id="cursos">
+      <div class="section-title reveal">
+        <p>APRENDIZADO</p>
+        <h2>CURSOS &<br><em>CERTIFICAÇÕES.</em></h2>
+      </div>
+
+      <div class="course-filters reveal">
+        <button class="active" data-filter="all">TODOS</button>
+        <button data-filter="2025">2025</button>
+        <button data-filter="2026">2026</button>
+      </div>
+
+      <div class="course-grid">
+        <article class="course-card reveal" data-year="2026"><span>◎</span><div><h3>Cidadania Digital e uso Consciente da Internet</h3><small>2026</small></div><b>↗</b></article>
+        <!-- FORMAÇÃO/CERTIFICAÇÃO PRINCIPAL: Técnico em Desenvolvimento de Sistemas no SENAI. -->
+        <article class="course-card reveal" data-year="2026"><span>◆</span><div><h3>Técnico em Desenvolvimento de Sistemas — SENAI</h3><small>2026 · EM ANDAMENTO · 1.200 HORAS</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2025"><span>◌</span><div><h3>Competência Transversal — Segurança no Trabalho</h3><small>2025</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>✦</span><div><h3>Design Thinking</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2025"><span>◒</span><div><h3>Desvendando a Descarbonização</h3><small>2025</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>◇</span><div><h3>Desvendando a Indústria 4.0</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>◈</span><div><h3>Desvendando o ESG</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>↗</span><div><h3>Empreender SENAI</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2025"><span>▦</span><div><h3>Excel Básico</h3><small>2025</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2025"><span>AI</span><div><h3>Fluência — Fundamentos da Inteligência Artificial</h3><small>2025</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>AI</span><div><h3>IA Generativa</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>□</span><div><h3>Fundamentos da Gestão de Projetos Aplicados na Indústria</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>∞</span><div><h3>Geração de Valor Circular e Modelos de Negócios</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2026"><span>◷</span><div><h3>Gestão do Tempo</h3><small>2026</small></div><b>↗</b></article>
+        <article class="course-card reveal" data-year="2025"><span>⌁</span><div><h3>Por dentro da Segurança Cibernética</h3><small>2025</small></div><b>↗</b></article>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO -->
+    <!-- FORMAÇÃO: escolaridade e curso técnico detalhados. -->
+    <section class="section" id="formacao">
+      <div class="section-title reveal">
+        <p>FORMAÇÃO</p>
+        <h2>MEU CAMINHO<br><em>ATÉ AQUI.</em></h2>
+      </div>
+
+      <div class="education-grid">
+        <article class="education-card reveal">
+          <span>01</span>
+          <p>CURSO TÉCNICO</p>
+          <h3>Técnico em Desenvolvimento de Sistemas</h3>
+          <strong>Escola SENAI de Suzano</strong>
+          <small>1.200 horas · Cursando 1º semestre<br>Conclusão: Dezembro de 2026</small>
+        </article>
+        <article class="education-card reveal">
+          <span>02</span>
+          <p>ENSINO MÉDIO</p>
+          <h3>Ensino Médio</h3>
+          <strong>Escola SESI de Suzano</strong>
+          <small>Conclusão: Dezembro de 2026</small>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <!-- CONTATO: telefone, e-mail, LinkedIn e formulário que abre o cliente de e-mail. -->
+    <section class="contact-section" id="contato">
+      <div class="contact-inner">
+        <div class="section-title light reveal">
+          <p>CONTATO</p>
+          <h2>VAMOS<br><em>CONVERSAR?</em></h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-details reveal">
+            <a href="tel:+5511937556610"><span>TELEFONE</span><strong>(11) 93755-6610</strong></a>
+            <a href="mailto:lucas.filhotar@gmail.com"><span>E-MAIL</span><strong>lucas.filhotar@gmail.com</strong></a>
+            <div><span>LOCALIZAÇÃO</span><strong>Suzano — São Paulo</strong></div>
+            <a href="https://www.linkedin.com/in/lucas-robson-pedroso-de-carvalho-6b2a00364" target="_blank"><span>LINKEDIN</span><strong>Ver perfil ↗</strong></a>
+          </div>
+
+          <form class="contact-form reveal" id="contactForm">
+            <label>SEU NOME<input type="text" name="nome" placeholder="Seu nome" required></label>
+            <label>SEU E-MAIL<input type="email" name="email" placeholder="seu@email.com" required></label>
+            <label>MENSAGEM<textarea name="mensagem" rows="4" placeholder="Escreva sua mensagem..." required></textarea></label>
+            <button class="button white-button" type="submit">ENVIAR ↗</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- FOOTER: rodapé simples com identidade e link para voltar ao topo. -->
+  <footer>
+    <div class="footer-logo">LR</div>
+    <div><strong>LUCAS ROBSON</strong><small>Técnico em Desenvolvimento de Sistemas</small></div>
+    <span>SÃO PAULO — BRASIL</span>
+    <a href="#inicio">TOPO ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
