@@ -1,0 +1,533 @@
+/* ============================================================
+   PORTFÓLIO LUCAS ROBSON — CSS
+   Este arquivo controla cores, tamanhos, espaçamentos, bordas,
+   responsividade, animações e estados de hover do site.
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--burgundy:#74121d;--burgundy-dark:#500c14;--black:#121212;--white:#fff;--soft:#f7f7f5;--line:#d9d6d2;--muted:#74716d;--display:"Space Grotesk",sans-serif;--body:"DM Sans",sans-serif}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--black);font-family:var(--body);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.hero{min-height:760px;padding:25px 3vw 18px;display:flex;flex-direction:column;background:#fff}
+.nav{height:68px;border:1px solid var(--burgundy);display:flex;align-items:center;justify-content:space-between;padding:0 25px;position:relative;z-index:20}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{font-family:var(--display);font-size:25px;font-weight:700;letter-spacing:-.08em;color:var(--burgundy)}
+.brand-name{font-size:10px;font-weight:700;letter-spacing:.14em}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:10px;font-weight:700;transition:.25s}
+.nav-links a:hover{color:var(--burgundy)}
+.menu-toggle{display:none;background:transparent;border:0}
+.menu-toggle span{display:block;width:25px;height:1px;background:var(--burgundy);margin:5px}
+.hero-frame{border:1px solid var(--burgundy);border-top:0;min-height:580px;padding:65px 5vw 55px;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;position:relative}
+.hero-copy{max-width:690px}
+.mini-title{display:flex;align-items:center;gap:10px;color:var(--burgundy);font-size:10px;font-weight:700;letter-spacing:.16em;margin-bottom:25px}
+.mini-title span{width:60px;height:1px;background:var(--burgundy)}
+.hero h1{font-family:var(--display);font-size:clamp(5rem,10vw,10.5rem);line-height:.78;letter-spacing:-.085em;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--burgundy)}
+.hero-role{display:flex;align-items:center;gap:10px;margin-top:28px}
+.hero-role strong{font-size:11px;letter-spacing:.05em}
+.hero-role span{background:var(--burgundy);color:#fff;font-size:9px;font-weight:700;padding:7px 9px}
+.hero-copy>p{max-width:480px;font-size:14px;line-height:1.65;color:#5f5d59;margin:25px 0}
+.hero-actions{display:flex;gap:10px}
+.button{display:inline-flex;align-items:center;gap:22px;padding:13px 17px;border:1px solid var(--burgundy);font-size:9px;font-weight:700;letter-spacing:.1em;transition:.3s}
+.burgundy{background:var(--burgundy);color:#fff}
+.burgundy:hover{background:var(--burgundy-dark);transform:translateY(-3px)}
+.outline{color:var(--burgundy);background:#fff}
+.outline:hover{background:var(--burgundy);color:#fff;transform:translateY(-3px)}
+.hero-showcase{position:relative;padding:18px 0 28px}
+.showcase-label{font-size:9px;letter-spacing:.12em;color:var(--muted);margin-bottom:12px}
+.showcase-browser{border:1px solid var(--burgundy);background:#fff;padding:9px;transform:rotate(1deg);box-shadow:15px 15px 0 rgba(116,18,29,.08);transition:.5s}
+.showcase-browser:hover{transform:rotate(0) translateY(-5px)}
+.browser-top{height:29px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);font-size:8px;color:var(--muted)}
+.browser-dots{display:flex;gap:4px}
+.browser-dots i{width:5px;height:5px;border-radius:50%;background:var(--burgundy)}
+.browser-screen{height:365px;background:#f3eee9;position:relative;overflow:hidden;padding:35px}
+.browser-screen:after{content:"";position:absolute;width:290px;height:290px;border:1px solid rgba(116,18,29,.2);border-radius:50%;right:-75px;bottom:-100px}
+.screen-brand{font-family:var(--display);font-size:45px;line-height:.78;letter-spacing:-.07em;color:var(--burgundy)}
+.screen-brand em{font-style:normal;color:#111}
+.screen-copy{position:absolute;right:35px;bottom:38px;display:flex;flex-direction:column;align-items:flex-start}
+.screen-copy small{font-size:8px;color:#777;margin-bottom:10px}
+.screen-copy strong{font-family:var(--display);font-size:30px;line-height:.88;letter-spacing:-.06em}
+.screen-copy span{margin-top:18px;border:1px solid var(--burgundy);padding:9px 12px;font-size:8px;color:var(--burgundy)}
+.showcase-note{position:absolute;right:-4px;bottom:0;background:var(--burgundy);color:#fff;padding:10px 14px;font-size:8px;letter-spacing:.1em}
+.hero-footer{display:flex;justify-content:space-between;padding:17px 4px 0;font-size:8px;letter-spacing:.12em;color:var(--muted)}
+.section{max-width:1500px;margin:auto;padding:125px 6vw}
+.section-title p{font-size:9px;letter-spacing:.16em;font-weight:700;color:var(--burgundy);margin-bottom:18px}
+.section-title h2{font-family:var(--display);font-size:clamp(3.6rem,7vw,7.5rem);line-height:.82;letter-spacing:-.075em}
+.section-title h2 em{font-style:normal;color:var(--burgundy)}
+.about-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:11vw;margin-top:90px}
+.about-info{border-top:1px solid var(--line)}
+.about-info div{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.about-info span{font-size:8px;color:var(--muted);letter-spacing:.12em}
+.about-info strong{font-size:11px;text-align:right}
+.about-text{max-width:650px}
+.about-text .big{font-family:var(--display);font-size:clamp(1.7rem,3vw,3rem);line-height:1.05;letter-spacing:-.04em;margin-bottom:30px}
+.about-text p:not(.big){font-size:14px;line-height:1.8;color:#66625e}
+.tech-section,.courses-section{background:var(--soft);max-width:none}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:70px}
+.tech-card{min-height:155px;border:1px solid var(--line);background:#fff;padding:20px;display:flex;flex-direction:column;justify-content:space-between;position:relative;transition:.35s}
+.tech-card i{font-size:42px;color:var(--burgundy)}
+.tech-card .letter-icon{font-family:var(--display);font-size:42px;font-weight:700;color:var(--burgundy)}
+.tech-card div{display:flex;flex-direction:column;gap:3px}
+.tech-card b{font-family:var(--display);font-size:16px}
+.tech-card small{font-size:9px;color:var(--muted)}
+.tech-card>span:last-child{position:absolute;right:17px;bottom:17px;color:var(--burgundy);opacity:0;transform:translate(-5px,5px);transition:.3s}
+.tech-card:hover{border-color:var(--burgundy);transform:translateY(-6px);box-shadow:0 15px 30px rgba(116,18,29,.08)}
+.tech-card:hover>span:last-child{opacity:1;transform:none}
+.tech-card:hover i,.tech-card:hover .letter-icon{transform:scale(1.08)}
+.project-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:65px}
+.carousel-controls{display:flex;align-items:center;gap:14px}
+.carousel-controls button{width:42px;height:42px;border:1px solid var(--burgundy);background:#fff;color:var(--burgundy);transition:.25s}
+.carousel-controls button:hover{background:var(--burgundy);color:#fff}
+.carousel-controls span{font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.carousel-window{overflow:hidden}
+.project-track{display:flex;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.project-slide{min-width:100%;display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--burgundy);background:#fff}
+.project-visual{min-height:530px;background:#ece8e2;padding:45px;display:flex;align-items:center;justify-content:center}
+.mini-browser{width:90%;background:#fff;border:1px solid #c9c4be;box-shadow:20px 20px 0 rgba(116,18,29,.09);transition:.5s}
+.project-slide:hover .mini-browser{transform:translateY(-5px)}
+.mini-browser .browser-top{padding:0 12px}
+.donate-preview{height:385px;background:var(--burgundy);color:#fff;padding:45px;position:relative}
+.donate-preview small{font-size:12px;letter-spacing:.14em}
+.donate-preview strong{display:block;font-family:var(--display);font-size:65px;line-height:.8;letter-spacing:-.08em;margin-top:8px}
+.donate-preview p{position:absolute;left:45px;bottom:70px;font-size:10px;letter-spacing:.08em}
+.donate-preview button{position:absolute;bottom:35px;left:45px;border:1px solid #fff;background:transparent;color:#fff;padding:9px 12px;font-size:8px}
+.project-data{padding:45px;display:grid;grid-template-rows:auto 1fr;gap:35px}
+.project-data>div:last-child{align-self:end}
+.project-data p:first-child{font-size:8px;letter-spacing:.13em;color:var(--muted)}
+.project-data h3{font-family:var(--display);font-size:clamp(3rem,5vw,5.5rem);line-height:.85;letter-spacing:-.07em;margin-top:12px;color:var(--burgundy)}
+.project-desc{font-size:13px;line-height:1.7;color:#66625e;max-width:400px;margin-bottom:18px}
+.tags{display:flex;gap:6px;margin-bottom:22px}
+.tags span{border:1px solid var(--line);padding:5px 8px;font-size:8px;letter-spacing:.08em}
+.project-data a{font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--burgundy);border-bottom:1px solid var(--burgundy);padding-bottom:4px}
+.editable-project .empty-project{min-height:530px;background:linear-gradient(135deg,#fafafa,#f2f1ef);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-right:1px solid var(--line)}
+.empty-project .plus{width:62px;height:62px;border:1px solid var(--burgundy);border-radius:50%;background:#fff;color:var(--burgundy);font-size:30px;margin-bottom:18px;transition:.3s}
+.empty-project:hover .plus{background:var(--burgundy);color:#fff;transform:rotate(90deg)}
+.empty-project strong{font-size:10px;letter-spacing:.14em;color:var(--burgundy)}
+.empty-project small{font-size:9px;color:var(--muted);margin-top:7px}
+.carousel-dots{display:flex;justify-content:center;gap:6px;margin-top:24px}
+.carousel-dots button{width:7px;height:7px;border-radius:50%;border:1px solid var(--burgundy);background:#fff;padding:0}
+.carousel-dots button.active{background:var(--burgundy)}
+.course-filters{display:flex;gap:7px;margin:60px 0 22px}
+.course-filters button{border:1px solid var(--burgundy);background:#fff;color:var(--burgundy);padding:9px 15px;font-size:8px;font-weight:700;letter-spacing:.08em}
+.course-filters button.active,.course-filters button:hover{background:var(--burgundy);color:#fff}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.course-card{min-height:175px;background:#fff;border:1px solid var(--line);padding:20px;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:start;transition:.35s}
+.course-card>span{font-size:26px;color:var(--burgundy);font-family:var(--display)}
+.course-card h3{font-family:var(--display);font-size:17px;line-height:1.05;letter-spacing:-.035em}
+.course-card small{display:block;margin-top:10px;font-size:8px;color:var(--burgundy);letter-spacing:.12em}
+.course-card>b{font-size:14px;color:var(--burgundy);opacity:0;transition:.3s}
+.course-card:hover{border-color:var(--burgundy);transform:translateY(-5px)}
+.course-card:hover>b{opacity:1}
+.course-card.hidden{display:none}
+.education-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:9px;margin-top:75px}
+.education-card{border:1px solid var(--line);padding:35px;min-height:310px;position:relative;transition:.35s}
+.education-card:hover{border-color:var(--burgundy);transform:translateY(-5px)}
+.education-card>span{font-size:9px;color:var(--burgundy)}
+.education-card p{font-size:8px;letter-spacing:.14em;color:var(--muted);margin-top:35px}
+.education-card h3{font-family:var(--display);font-size:clamp(2rem,3.2vw,4rem);line-height:.9;letter-spacing:-.06em;margin:12px 0 35px;max-width:650px}
+.education-card strong{display:block;font-size:12px}
+.education-card small{display:block;color:var(--muted);font-size:10px;line-height:1.6;margin-top:8px}
+.contact-section{background:var(--burgundy);color:#fff;padding:125px 6vw}
+.contact-inner{max-width:1380px;margin:auto}
+.light p{color:rgba(255,255,255,.65)}
+.light h2 em{color:#e9d4d5}
+.contact-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:10vw;margin-top:80px}
+.contact-details{display:flex;flex-direction:column;gap:30px}
+.contact-details a,.contact-details div{display:flex;flex-direction:column;gap:5px}
+.contact-details span{font-size:8px;letter-spacing:.14em;color:rgba(255,255,255,.55)}
+.contact-details strong{font-family:var(--display);font-size:17px;font-weight:500}
+.contact-details a:hover strong{color:#ead4d5}
+.contact-form{display:flex;flex-direction:column;gap:25px}
+.contact-form label{font-size:8px;letter-spacing:.14em}
+.contact-form input,.contact-form textarea{display:block;width:100%;margin-top:8px;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.4);padding:12px 0;color:#fff;outline:0;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#fff}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.45)}
+.white-button{background:#fff;color:var(--burgundy);border-color:#fff;align-self:flex-start}
+.white-button:hover{background:transparent;color:#fff;transform:translateY(-3px)}
+footer{display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;padding:25px 6vw;border-top:1px solid var(--line)}
+.footer-logo{font-family:var(--display);font-weight:700;font-size:24px;color:var(--burgundy)}
+footer strong{display:block;font-size:9px;letter-spacing:.12em}
+footer small,footer>span,footer>a{font-size:8px;color:var(--muted)}
+footer>a:hover{color:var(--burgundy)}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:1000px){
+ .nav-links{gap:15px}.hero-frame{grid-template-columns:1fr}.hero-showcase{max-width:700px;width:100%;margin:auto}
+ .tech-grid{grid-template-columns:repeat(3,1fr)}.course-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+ .hero{padding:12px}.nav{height:60px}.nav-links{position:fixed;inset:0;background:#fff;flex-direction:column;justify-content:center;gap:25px;transform:translateX(100%);transition:.4s}.nav-links.open{transform:none}.nav-links a{font-family:var(--display);font-size:25px;color:var(--burgundy)}.menu-toggle{display:block;position:relative;z-index:30}
+ .hero-frame{padding:55px 7vw 40px;min-height:auto}.hero h1{font-size:22vw}.hero-role{align-items:flex-start;flex-direction:column}.hero-footer{gap:12px;flex-wrap:wrap}
+ .section{padding:90px 6vw}.about-layout,.contact-grid,.education-grid{grid-template-columns:1fr}.tech-grid,.course-grid{grid-template-columns:repeat(2,1fr)}
+ .project-heading{align-items:start;gap:30px;flex-direction:column}.project-slide{grid-template-columns:1fr}.project-visual,.editable-project .empty-project{min-height:360px}.project-data{padding:30px}.donate-preview{height:250px;padding:30px}.donate-preview strong{font-size:45px}.screen-copy{right:20px;bottom:20px}.screen-copy strong{font-size:24px}
+ .carousel-controls{width:100%;justify-content:space-between}.course-card{min-height:155px;padding:16px;gap:10px}.course-card h3{font-size:14px}
+ footer{grid-template-columns:1fr 1fr}.contact-section{padding:90px 6vw}
+}
+@media(max-width:450px){
+ .tech-grid,.course-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column;align-items:flex-start}.hero-footer span:nth-child(2){display:none}.project-visual{padding:20px}.mini-browser{width:100%}.project-data h3{font-size:3rem}
+}
+
+/* ===== ACABAMENTO FINAL: CANTOS ARREDONDADOS + HOVER VINHO ===== */
+.nav,
+.hero-frame,
+.showcase-browser,
+.button,
+.tech-card,
+.project-slide,
+.mini-browser,
+.course-card,
+.course-filters button,
+.education-card,
+.carousel-controls button,
+.carousel-dots button,
+.empty-project .plus {
+  border-radius: 14px;
+}
+
+.nav { border-radius: 18px; }
+.hero-frame { border-top: 1px solid var(--burgundy); overflow: hidden; }
+
+.tech-card,
+.course-card,
+.education-card,
+.project-slide {
+  overflow: hidden;
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+
+.tech-card:hover,
+.course-card:hover,
+.education-card:hover {
+  background: var(--burgundy);
+  color: #fff;
+  border-color: var(--burgundy);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(116,18,29,.16);
+}
+
+.tech-card:hover i,
+.tech-card:hover .letter-icon,
+.tech-card:hover b,
+.tech-card:hover small,
+.tech-card:hover > span:last-child,
+.course-card:hover h3,
+.course-card:hover small,
+.course-card:hover > span,
+.course-card:hover > b {
+  color: #fff;
+}
+
+.tech-card:hover > span:last-child { opacity: 1; transform: none; }
+.course-card:hover small { opacity: .75; }
+
+.carousel-controls button,
+.course-filters button,
+.button,
+.nav-links a {
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+}
+
+.carousel-controls button:hover { background: var(--burgundy); color: #fff; }
+.course-filters button:hover,
+.course-filters button.active { background: var(--burgundy); color: #fff; }
+.outline:hover { background: var(--burgundy); color: #fff; }
+.project-slide:hover { box-shadow: 0 20px 45px rgba(116,18,29,.10); }
+
+.project-slide.editable-project:hover .empty-project { background: var(--burgundy); color: #fff; }
+.project-slide.editable-project:hover .empty-project strong,
+.project-slide.editable-project:hover .empty-project small { color: #fff; }
+.project-slide.editable-project:hover .empty-project .plus { background: #fff; color: var(--burgundy); }
+
+.education-card:hover h3,
+.education-card:hover strong { color: #fff; }
+.education-card:hover p,
+.education-card:hover small,
+.education-card:hover > span { color: rgba(255,255,255,.72); }
+
+@media(max-width:720px){ .nav-links.open { border-radius: 0 0 18px 18px; } }
+
+
+/* ============================================================
+   HOVER DOS LINKS DO HEADER
+   - O ::after cria uma linha abaixo do texto sem alterar o layout.
+   - A linha começa com largura 0 e cresce para 100% no hover.
+   ============================================================ */
+.nav-links a{position:relative;padding:8px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:2px;width:0;height:2px;background:var(--burgundy);transition:width .28s ease}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{width:100%}
+
+/* =========================================================
+   HEADER GRANDE
+   Fundo vinho + logo central + navegação separada.
+   ========================================================= */
+.site-header{
+  min-height:520px;
+  width:100%;
+  box-sizing:border-box;
+  background:var(--burgundy);
+  color:#fff;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding:58px 6vw 0;
+  overflow:hidden;
+}
+.site-header::before{
+  content:"";
+  position:absolute;
+  width:720px;
+  height:720px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  top:-520px;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+.header-logo{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:9px;
+  text-align:center;
+}
+.header-logo-mark{
+  font-family:var(--display);
+  font-size:72px;
+  line-height:.8;
+  font-weight:700;
+  letter-spacing:-.12em;
+}
+.header-logo-name{
+  font-size:8px;
+  line-height:1.15;
+  letter-spacing:.24em;
+  font-weight:700;
+}
+.header-nav{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:1100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:42px;
+  padding:26px 0;
+  border-top:1px solid rgba(255,255,255,.3);
+}
+.header-nav a{
+  position:relative;
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  padding:5px 0;
+}
+.header-nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-5px;
+  height:2px;
+  background:#fff;
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .25s ease;
+}
+.header-nav a:hover::after,
+.header-nav a:focus-visible::after{
+  transform:scaleX(1);
+}
+.header-menu-toggle{display:none;background:transparent;border:0;color:#fff}
+.header-menu-toggle span{
+  display:block;width:27px;height:2px;background:#fff;margin:5px;
+}
+
+/* O conteúdo do hero fica separado visualmente do header. */
+.hero{
+  min-height:700px;
+  padding:0 3vw 18px;
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+}
+.hero > .nav{display:none}
+
+/* Cantos arredondados */
+.nav,.hero-frame,.showcase-browser,.button,.tech-card,.project-slide,
+.mini-browser,.course-card,.course-filters button,.education-card,
+.carousel-controls button,.carousel-dots button,.empty-project .plus{
+  border-radius:14px;
+}
+.hero-frame{
+  border-top:0;
+  border-radius:0 0 18px 18px;
+  overflow:hidden;
+}
+
+/* Hover vinho nos cards */
+.tech-card,.course-card,.education-card{
+  transition:background-color .3s ease,color .3s ease,border-color .3s ease,
+  transform .3s ease,box-shadow .3s ease;
+}
+.tech-card:hover,.course-card:hover,.education-card:hover{
+  background:var(--burgundy);
+  color:#fff;
+  border-color:var(--burgundy);
+  transform:translateY(-6px);
+  box-shadow:0 18px 35px rgba(116,18,29,.16);
+}
+.tech-card:hover i,.tech-card:hover .letter-icon,.tech-card:hover b,
+.tech-card:hover small,.tech-card:hover > span:last-child,
+.course-card:hover h3,.course-card:hover small,.course-card:hover > span,
+.course-card:hover > b,.education-card:hover h3,.education-card:hover strong{
+  color:#fff;
+}
+.tech-card:hover > span:last-child{opacity:1;transform:none}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media(max-width:900px){
+  .site-header{min-height:430px}
+  .header-nav{gap:22px}
+}
+@media(max-width:720px){
+  .site-header{min-height:330px;padding-top:42px}
+  .header-logo-mark{font-size:58px}
+  .header-menu-toggle{
+    display:block;
+    position:absolute;
+    top:28px;
+    right:25px;
+    z-index:5;
+  }
+  .header-nav{
+    position:absolute;
+    inset:0;
+    height:100%;
+    background:var(--burgundy-dark);
+    flex-direction:column;
+    justify-content:center;
+    gap:24px;
+    transform:translateX(100%);
+    transition:transform .35s ease;
+    border:0;
+  }
+  .header-nav.open{transform:translateX(0)}
+  .header-nav a{font-family:var(--display);font-size:23px}
+  .hero{padding:0 12px 12px}
+}
+
+/* =========================================================
+   CORREÇÃO DO HEADER SUPERIOR
+   O header fica sempre visível no topo.
+   ========================================================= */
+.site-header{
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  flex-shrink:0;
+}
+.header-logo{
+  text-decoration:none;
+  color:#fff;
+}
+
+/* ===== HEADER COMPACTO — referência Primor Joias ===== */
+.site-header{
+  min-height:250px !important;
+  height:250px !important;
+  width:100%;
+  box-sizing:border-box;
+  padding:34px 6vw 0 !important;
+  background:var(--burgundy);
+  display:flex !important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.header-logo{color:#fff;text-decoration:none;gap:6px}
+.header-logo-mark{font-size:48px !important;line-height:.8}
+.header-logo-name{font-size:7px;letter-spacing:.22em}
+.header-nav{
+  width:100%;
+  max-width:1120px;
+  justify-content:center;
+  gap:38px;
+  padding:20px 0 22px;
+  border-top:1px solid rgba(255,255,255,.28);
+}
+.header-nav a{font-size:10px;color:#fff}
+.header-nav a::after{background:#fff;height:2px;bottom:-5px}
+
+/* ===== PROJETO: LOJA DE JOIAS PRIMOR ===== */
+.primor-project{background:#d9f1fb;padding:34px}
+.primor-preview{
+  height:385px;
+  background:#d9f1fb;
+  color:#1e398f;
+  padding:22px;
+  position:relative;
+  overflow:hidden;
+}
+.primor-logo{
+  text-align:center;
+  font-family:var(--display);
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:.08em;
+  margin-bottom:28px;
+}
+.primor-menu{
+  text-align:center;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.primor-title{
+  position:absolute;
+  left:34px;
+  bottom:42px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.primor-title small{font-size:8px;letter-spacing:.16em}
+.primor-title strong{
+  font-family:var(--display);
+  font-size:58px;
+  line-height:.8;
+  letter-spacing:-.08em;
+}
+.primor-title span{font-size:9px;color:#39436d}
+
+@media(max-width:720px){
+  .site-header{min-height:190px !important;height:190px !important;padding-top:30px !important}
+  .header-logo-mark{font-size:42px !important}
+  .header-nav{
+    position:absolute;
+    inset:0;
+    height:190px;
+    background:var(--burgundy-dark);
+    flex-direction:column;
+    justify-content:center;
+    gap:24px;
+    transform:translateX(100%);
+    transition:transform .35s ease;
+    border:0;
+  }
+  .header-nav.open{transform:translateX(0)}
+  .header-nav a{font-family:var(--display);font-size:23px}
+}
