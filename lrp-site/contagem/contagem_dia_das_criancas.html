@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva - Dia das Crianças</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+min-height:100vh;overflow:hidden;font-family:Arial,sans-serif;
+background:radial-gradient(circle at 20% 20%,rgba(255,210,80,.35),transparent 25%),
+radial-gradient(circle at 80% 30%,rgba(255,100,180,.30),transparent 25%),
+radial-gradient(circle at 50% 80%,rgba(80,180,255,.30),transparent 30%),
+linear-gradient(135deg,#ff7eb3,#ffb347,#70d6ff);
+display:flex;justify-content:center;align-items:center
+}
+#particulas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.conteudo{
+position:relative;z-index:2;width:min(1000px,90%);padding:50px 30px;text-align:center;
+background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);
+border-radius:30px;backdrop-filter:blur(10px);
+box-shadow:0 20px 60px rgba(0,0,0,.2)
+}
+h1{color:white;font-size:clamp(35px,6vw,70px);margin-bottom:10px;text-shadow:0 4px 15px rgba(0,0,0,.25)}
+.subtitulo{color:white;font-size:clamp(18px,3vw,28px);margin-bottom:40px}
+#contagem{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:15px}
+.tempo{
+min-width:130px;padding:25px 15px;background:rgba(255,255,255,.25);
+border-radius:20px;border:2px solid rgba(255,255,255,.4);
+box-shadow:0 10px 30px rgba(0,0,0,.15);transition:transform .3s
+}
+.tempo:hover{transform:translateY(-8px) scale(1.04)}
+.numero{display:block;color:white;font-size:42px;font-weight:bold;text-shadow:0 3px 10px rgba(0,0,0,.2)}
+.nome{display:block;margin-top:8px;color:white;font-size:16px;font-weight:bold;text-transform:uppercase}
+#mensagem{display:none;color:white;font-size:40px;font-weight:bold}
+@media(max-width:700px){
+.conteudo{padding:35px 15px}#contagem{gap:8px}.tempo{min-width:100px;padding:18px 10px}
+.numero{font-size:30px}.nome{font-size:12px}
+}
+</style>
+</head>
+<body>
+<canvas id="particulas"></canvas>
+<main class="conteudo">
+<h1>🎈 Dia das Crianças 🎈</h1>
+<p class="subtitulo">Falta pouco para o grande dia!</p>
+<div id="contagem">
+<div class="tempo" id="blocoAnos"><span class="numero" id="anos">0</span><span class="nome">Anos</span></div>
+<div class="tempo" id="blocoMeses"><span class="numero" id="meses">0</span><span class="nome">Meses</span></div>
+<div class="tempo"><span class="numero" id="dias">0</span><span class="nome">Dias</span></div>
+<div class="tempo"><span class="numero" id="horas">0</span><span class="nome">Horas</span></div>
+<div class="tempo"><span class="numero" id="minutos">0</span><span class="nome">Minutos</span></div>
+<div class="tempo"><span class="numero" id="segundos">0</span><span class="nome">Segundos</span></div>
+</div>
+<div id="mensagem">🎉 Feliz Dia das Crianças! 🎉</div>
+</main>
+<script>
+const dataAlvo=new Date("2026-10-12T00:00:00");
+function atualizarContagem(){
+const agora=new Date();
+if(agora>=dataAlvo){
+document.getElementById("contagem").style.display="none";
+document.getElementById("mensagem").style.display="block";return;
+}
+let anos=dataAlvo.getFullYear()-agora.getFullYear();
+let meses=dataAlvo.getMonth()-agora.getMonth();
+let dias=dataAlvo.getDate()-agora.getDate();
+let horas=dataAlvo.getHours()-agora.getHours();
+let minutos=dataAlvo.getMinutes()-agora.getMinutes();
+let segundos=dataAlvo.getSeconds()-agora.getSeconds();
+if(segundos<0){segundos+=60;minutos--}
+if(minutos<0){minutos+=60;horas--}
+if(horas<0){horas+=24;dias--}
+if(dias<0){
+const ultimoDiaMesAnterior=new Date(dataAlvo.getFullYear(),dataAlvo.getMonth(),0).getDate();
+dias+=ultimoDiaMesAnterior;meses--;
+}
+if(meses<0){meses+=12;anos--}
+const diasTotais=(dataAlvo-agora)/(1000*60*60*24);
+const blocoAnos=document.getElementById("blocoAnos");
+const blocoMeses=document.getElementById("blocoMeses");
+if(anos>=1){blocoAnos.style.display="block";blocoMeses.style.display="block"}
+else if(diasTotais>30){blocoAnos.style.display="none";blocoMeses.style.display="block"}
+else{blocoAnos.style.display="none";blocoMeses.style.display="none"}
+document.getElementById("anos").textContent=anos;
+document.getElementById("meses").textContent=meses;
+document.getElementById("dias").textContent=dias;
+document.getElementById("horas").textContent=String(horas).padStart(2,"0");
+document.getElementById("minutos").textContent=String(minutos).padStart(2,"0");
+document.getElementById("segundos").textContent=String(segundos).padStart(2,"0");
+}
+atualizarContagem();setInterval(atualizarContagem,1000);
+
+const canvas=document.getElementById("particulas"),ctx=canvas.getContext("2d");
+let particulas=[];
+const mouse={x:-1000,y:-1000,ativo:false,raio:170};
+function ajustarCanvas(){canvas.width=innerWidth;canvas.height=innerHeight}
+ajustarCanvas();addEventListener("resize",ajustarCanvas);
+addEventListener("pointermove",evento=>{
+mouse.x=evento.clientX;
+mouse.y=evento.clientY;
+mouse.ativo=true;
+},{passive:true});
+addEventListener("pointerleave",()=>{mouse.ativo=false},{passive:true});
+for(let i=0;i<300;i++){
+particulas.push({
+x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+tamanho:Math.random()*4+1,
+velocidadeX:(Math.random()-.5)*1.8,
+velocidadeY:(Math.random()-.5)*1.8,
+velocidadeBaseX:0,
+velocidadeBaseY:0,
+opacidade:Math.random()*.8+.2,
+pulsar:Math.random()*.05,
+forcaX:0,
+forcaY:0
+});
+}
+particulas.forEach(p=>{
+p.velocidadeBaseX=p.velocidadeX;
+p.velocidadeBaseY=p.velocidadeY;
+});
+function desenharParticulas(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particulas.forEach(p=>{
+if(mouse.ativo){
+const distanciaX=p.x-mouse.x;
+const distanciaY=p.y-mouse.y;
+const distancia=Math.hypot(distanciaX,distanciaY);
+if(distancia<mouse.raio&&distancia>0){
+const intensidade=(1-distancia/mouse.raio)*1.8;
+p.forcaX+=(distanciaX/distancia)*intensidade;
+p.forcaY+=(distanciaY/distancia)*intensidade;
+}
+}
+p.velocidadeX+=(p.velocidadeBaseX-p.velocidadeX)*.012+p.forcaX;
+p.velocidadeY+=(p.velocidadeBaseY-p.velocidadeY)*.012+p.forcaY;
+p.forcaX*=.88;p.forcaY*=.88;
+p.velocidadeX*=.985;p.velocidadeY*=.985;
+p.x+=p.velocidadeX;p.y+=p.velocidadeY;
+if(p.x<-10)p.x=canvas.width+10;if(p.x>canvas.width+10)p.x=-10;
+if(p.y<-10)p.y=canvas.height+10;if(p.y>canvas.height+10)p.y=-10;
+const brilho=Math.sin(Date.now()*p.pulsar)*.2;
+ctx.beginPath();ctx.arc(p.x,p.y,p.tamanho,0,Math.PI*2);
+ctx.fillStyle=`rgba(255,255,255,${Math.max(.1,p.opacidade+brilho)})`;ctx.fill();
+});
+requestAnimationFrame(desenharParticulas);
+}
+desenharParticulas();
+</script>
+</body>
+</html>

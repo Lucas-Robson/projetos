@@ -3,6 +3,13 @@ const menuButton = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('#mobile-menu');
 document.body.classList.add('js-ready');
 
+function closeMobileMenu(){
+  if(!menuButton || !mobileMenu) return;
+  mobileMenu.hidden = true;
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Abrir menu');
+}
+
 function syncHeader(){
   header.classList.toggle('scrolled', window.scrollY > 10);
 }
@@ -13,13 +20,33 @@ menuButton.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!open));
   mobileMenu.hidden = open;
+  menuButton.setAttribute('aria-label', open ? 'Abrir menu' : 'Fechar menu');
 });
 
-mobileMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.hidden = true;
-    menuButton.setAttribute('aria-expanded', 'false');
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', event => {
+    const href = link.getAttribute('href');
+    const target = document.querySelector(href);
+    if(!target) return;
+    event.preventDefault();
+    closeMobileMenu();
+    if(href === '#inicio'){
+      window.scrollTo({top: 0, behavior: 'auto'});
+    } else {
+      target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+    history.replaceState(null, '', href);
   });
+});
+
+document.addEventListener('click', event => {
+  if(!mobileMenu.hidden && !mobileMenu.contains(event.target) && !menuButton.contains(event.target)){
+    closeMobileMenu();
+  }
+});
+
+window.addEventListener('hashchange', () => {
+  if(window.location.hash === '#inicio') window.scrollTo(0, 0);
 });
 
 const revealElements = document.querySelectorAll('.reveal');
