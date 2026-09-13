@@ -31,6 +31,11 @@
       <span class="header-logo-name">LUCAS<br>ROBSON</span>
     </a>
 
+    <button class="theme-toggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false">
+      <span class="theme-toggle-icon">☾</span>
+      <span class="theme-toggle-label">TEMA ESCURO</span>
+    </button>
+
     <nav class="header-nav" aria-label="Navegação principal">
       <a href="#inicio">Início</a>
       <a href="#sobre">Sobre</a>
@@ -49,7 +54,6 @@
 
   <section class="hero" aria-label="Apresentação">
     <div class="hero-frame">
-
       <div class="hero-copy reveal">
         <div class="mini-title">
           <span></span>
@@ -70,32 +74,38 @@
 
         <div class="hero-actions">
           <a href="#projetos" class="button burgundy">VER PROJETOS <span>↗</span></a>
-          <a href="#contato" class="button outline">CONTATO <span>↗</span></a>
+          <a href="Currículo%20de%20Lucas%20Robson%20Pedroso%20De%20Carvalho.pdf" class="button outline" target="_blank" rel="noopener noreferrer">VER CURRÍCULO <span>↗</span></a>
         </div>
       </div>
 
       <div class="hero-showcase reveal">
-        <div class="showcase-label">01 / PROJETO EM DESTAQUE</div>
+        
+        <div class="profile-stage">
+          <canvas class="snake-canvas" aria-label="Experiência visual Snake em grid"></canvas>
+          <div class="snake-grid-mark snake-grid-mark-one"></div>
+          <div class="snake-grid-mark snake-grid-mark-two"></div>
+          <div class="profile-crosshair profile-crosshair-one"></div>
+          <div class="profile-crosshair profile-crosshair-two"></div>
 
-        <div class="showcase-browser">
-          <div class="browser-top">
-            <div class="browser-dots"><i></i><i></i><i></i></div>
-            <span>DONATE IN SAFE / WEBSITE</span>
-          </div>
-
-          <div class="browser-screen">
-            <div class="screen-brand">DONATE<br><em>IN SAFE</em></div>
-
-            <div class="screen-copy">
-              <small>TECNOLOGIA COM PROPÓSITO.</small>
-              <strong>DOAÇÕES<br>SEGURAS.</strong>
-              <span>CONHEÇA O PROJETO →</span>
+          <div class="profile-photo-wrap" data-profile-photo>
+            <div class="profile-photo-frame">
+              <img src="lucas robson.jpg" alt="Lucas Robson" class="profile-photo">
+              <span class="profile-photo-shine"></span>
             </div>
           </div>
+
+          <div class="profile-status">
+            <span class="profile-status-dot"></span>
+            SYSTEM ONLINE · 01
+          </div>
+
+          <div class="profile-micro profile-micro-top">GRID 24 × 16 · WRAP ON</div>
+          <div class="profile-micro profile-micro-bottom">INPUT / POINTER · VECTOR LOCK</div>
+          <div class="profile-index">LR<br><span>2026</span></div>
         </div>
 
         <div class="showcase-note">
-          DESENVOLVIMENTO WEB · HTML · CSS · JAVA
+          LUCAS ROBSON · DESENVOLVIMENTO DE SISTEMAS
         </div>
       </div>
 
@@ -244,7 +254,7 @@
         </div>
         <div class="carousel-controls reveal">
           <button id="prevProject" aria-label="Projeto anterior">←</button>
-          <span id="projectCounter">01 / 02</span>
+          <span id="projectCounter">01 / 04</span>
           <button id="nextProject" aria-label="Próximo projeto">→</button>
         </div>
       </div>
@@ -252,21 +262,8 @@
       <div class="carousel-window">
         <div class="project-track" id="projectTrack">
 
-          <article class="project-slide">
-            <div class="project-visual">
-              <div class="mini-browser">
-                <div class="browser-top">
-                  <div class="browser-dots"><i></i><i></i><i></i></div>
-                  <span>donate-in-safe</span>
-                </div>
-                <div class="donate-preview">
-                  <small>DONATE</small>
-                  <strong>IN SAFE</strong>
-                  <p>Tecnologia com propósito.</p>
-                  <button>FAZER DOAÇÃO</button>
-                </div>
-              </div>
-            </div>
+          <article class="project-slide" data-project="donate">
+            <div class="project-visual project-logo-visual"><img class="project-logo-image" src="donate in safe.jpeg" alt="Logo Donate in Safe"></div>
             <div class="project-data">
               <div>
                 <p>WEB DEVELOPMENT · PROJETO FINAL</p>
@@ -289,29 +286,8 @@
             </div>
           </article>
 
-          <article class="project-slide">
-            <div class="project-visual">
-              <div class="mini-browser">
-                <div class="browser-top">
-                  <div class="browser-dots"><i></i><i></i><i></i></div>
-                  <span>primor-joias / joia.html</span>
-                </div>
-
-                <div class="primor-preview">
-                  <div class="primor-logo">PRIMOR</div>
-
-                  <div class="primor-menu">
-                    INÍCIO · LINHA ROSE · LOCALIZAÇÃO · LISTA DE ESPERA · FAQ
-                  </div>
-
-                  <div class="primor-title">
-                    <small>LOJA DE JOIAS</small>
-                    <strong>PRIMOR</strong>
-                    <span>Elegância em cada detalhe.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <article class="project-slide" data-project="primor">
+            <div class="project-visual project-logo-visual"><img class="project-logo-image" src="primor.png" alt="Logo Primor"></div>
 
             <div class="project-data">
               <div>
@@ -339,6 +315,16 @@
                 </a>
               </div>
             </div>
+          </article>
+
+          <article class="project-slide" data-project="lrp">
+            <div class="project-visual project-logo-visual"><img class="project-logo-image" src="lrp.png" alt="Logo LRP Contabilidade"></div>
+            <div class="project-data"><div><p>WEB DESIGN · SITE INSTITUCIONAL</p><h3>LRP Contábil</h3></div><div><p class="project-desc">Site institucional para uma assistência contábil, com foco em clareza e confiança.</p><div class="tags"><span>HTML</span><span>CSS</span><span>UI/UX</span></div><a href="../lrp-site/index.html" target="_blank" rel="noopener noreferrer">VISUALIZAR PROJETO ↗</a></div></div>
+          </article>
+
+          <article class="project-slide" data-project="quiz">
+            <div class="project-visual project-logo-visual"><img class="project-logo-image" src="quiz.png" alt="Logo Quiz"></div>
+            <div class="project-data"><div><p>JAVASCRIPT · EXPERIÊNCIA</p><h3>Quiz de Conhecimentos</h3></div><div><p class="project-desc">Quiz interativo com perguntas, respostas e feedback para o usuário.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JS</span></div><a href="../quiz/index.html" target="_blank" rel="noopener noreferrer">VISUALIZAR PROJETO ↗</a></div></div>
           </article>
 
         </div>
@@ -536,11 +522,6 @@
               <strong>(11) 93755-6610 ↗</strong>
             </a>
 
-            <a href="tel:+5511937556610">
-              <span>TELEFONE</span>
-              <strong>(11) 93755-6610</strong>
-            </a>
-
             <a href="mailto:lucas.filhotar@gmail.com">
               <span>E-MAIL</span>
               <strong>lucas.filhotar@gmail.com</strong>
@@ -590,6 +571,12 @@
     <a href="#inicio">TOPO ↑</a>
   </footer>
 
+  <a class="whatsapp-float" href="https://wa.me/5511937556610?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20sobre%20os%20seus%20servi%C3%A7os." target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp">
+    <span class="whatsapp-icon">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp">
+    </span>
+    <span>Saiba mais</span>
+</a>
   <script src="script.js"></script>
 </body>
 </html>

@@ -86,10 +86,11 @@ h3{line-height:1.25}
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:100px;align-items:start}
 .about-copy{font-size:1.08rem;color:#6e5b57;padding-top:12px}
 .about-copy p{margin-bottom:16px}
-.stats-grid{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat-card{padding:30px 24px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line)}
 .stat-card:last-child{border-right:0}
 .stat-card strong{font-family:"Playfair Display",serif;font-size:2.1rem;color:var(--rose-deep)}
+.stat-card #years-counter{font:inherit;color:inherit;display:inline-block;min-width:.65em}
 .stat-card .stat-long{font-size:1.34rem;letter-spacing:-.02em}.stat-card span{font-size:.82rem;color:#806b66}
 
 .leonina{background:#fff}
@@ -162,7 +163,9 @@ details p{color:#75635e;margin:-2px 45px 24px 0;font-size:.94rem}
 .field{display:flex;flex-direction:column;gap:7px}.field-full{grid-column:1/-1}.field label{font-size:.78rem;font-weight:700;color:#6d5a56}.field input,.field textarea{width:100%;border:1px solid rgba(94,74,70,.18);background:#fffdfb;border-radius:13px;padding:13px 14px;outline:none;color:var(--brown-deep);transition:.2s}.field input:focus,.field textarea:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(183,110,121,.12)}
 .form-note{font-size:.76rem;color:#8b7671;margin:0;text-align:center}
 
+.whatsapp-inline-icon{width:20px;height:20px;object-fit:contain;display:block}
 .floating-whatsapp{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--rose);color:#fff;z-index:900;box-shadow:0 14px 34px rgba(183,110,121,.34);font-size:1.3rem;transition:.25s}
+.floating-whatsapp img{width:30px;height:30px;object-fit:contain;display:block}
 .floating-whatsapp:hover{transform:translateY(-3px) scale(1.03);background:var(--rose-deep)}
 
 .site-footer{background:var(--brown-deep);color:#f8efeb;padding:66px 0 22px}

@@ -61,6 +61,38 @@ if('IntersectionObserver' in window){
   revealElements.forEach(element => element.classList.add('visible'));
 }
 
+const yearsCounter = document.querySelector('#years-counter');
+let yearsCounterStarted = false;
+
+function animateYearsCounter(){
+  if(!yearsCounter || yearsCounterStarted) return;
+  yearsCounterStarted = true;
+  const startTime = performance.now();
+  const duration = 3500;
+
+  function updateCounter(currentTime){
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    yearsCounter.textContent = Math.floor(easedProgress * 9);
+    if(progress < 1) requestAnimationFrame(updateCounter);
+    else yearsCounter.textContent = '9';
+  }
+
+  requestAnimationFrame(updateCounter);
+}
+
+if('IntersectionObserver' in window && yearsCounter){
+  const counterObserver = new IntersectionObserver(entries => {
+    if(entries.some(entry => entry.isIntersecting)){
+      animateYearsCounter();
+      counterObserver.disconnect();
+    }
+  }, {threshold:0.5});
+  counterObserver.observe(yearsCounter);
+} else {
+  animateYearsCounter();
+}
+
 // Mantém apenas um item do FAQ aberto por vez.
 const details = [...document.querySelectorAll('.accordion details')];
 details.forEach(item => item.addEventListener('toggle', () => {
