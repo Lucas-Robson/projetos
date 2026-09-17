@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafezao - Lista de Pedidos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
+
+:root{
+    --espresso:#1b0f0a;
+    --coffee:#4a2817;
+    --caramel:#b86f35;
+    --cream:#f7efe4;
+    --paper:#fffaf4;
+    --muted:#806b5c;
+    --line:rgba(74,40,23,.12);
+    --shadow:0 24px 70px rgba(56,29,14,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+    min-height:100vh;
+    font-family:'DM Sans',sans-serif;
+    color:var(--espresso);
+    background:
+        radial-gradient(circle at 8% 10%,rgba(184,111,53,.13),transparent 28rem),
+        radial-gradient(circle at 92% 70%,rgba(74,40,23,.09),transparent 30rem),
+        var(--cream);
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.32;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+}
+
+header{
+    position:relative;
+    overflow:hidden;
+    min-height:280px;
+    padding:70px 20px 95px;
+    text-align:center;
+    color:white;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(216,154,69,.22),transparent 22rem),
+        linear-gradient(135deg,#130b07,#2c170e 60%,#4a2817);
+}
+
+header::after{
+    content:"☕";
+    position:absolute;
+    right:-20px;
+    bottom:-95px;
+    font-size:260px;
+    opacity:.045;
+    transform:rotate(-12deg);
+}
+
+header h1{
+    position:relative;
+    z-index:1;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(48px,8vw,82px);
+    line-height:.95;
+    letter-spacing:-3px;
+    color:#f1bd78;
+    text-shadow:0 8px 35px rgba(0,0,0,.3);
+}
+
+header p{
+    position:relative;
+    z-index:1;
+    max-width:500px;
+    margin:15px auto 0;
+    color:#e8d8c8;
+    font-size:16px;
+    letter-spacing:.04em;
+}
+
+main{
+    position:relative;
+    z-index:3;
+    width:min(94%,1000px);
+    margin:-55px auto 70px;
+}
+
+.box{
+    position:relative;
+    padding:clamp(24px,5vw,48px);
+    border:1px solid rgba(255,255,255,.8);
+    border-radius:30px;
+    background:rgba(255,250,244,.91);
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(18px);
+}
+
+h2{
+    font-family:'Playfair Display',serif;
+    text-align:left;
+    margin-bottom:28px;
+    font-size:clamp(29px,4vw,39px);
+    letter-spacing:-1px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 170px;
+    gap:15px;
+    padding:22px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:rgba(255,255,255,.58);
+}
+
+.form input{
+    width:100%;
+    height:54px;
+    padding:0 17px;
+    border:1px solid #ddcdbd;
+    border-radius:14px;
+    outline:none;
+    font:500 15px 'DM Sans',sans-serif;
+    color:var(--espresso);
+    background:#fff;
+    transition:border-color .2s,box-shadow .2s,transform .2s;
+}
+
+.form input:focus{
+    border-color:var(--caramel);
+    box-shadow:0 0 0 4px rgba(184,111,53,.11);
+}
+
+.form input::placeholder{color:#a38f80}
+
+.form input[type="number"]{
+    font-weight:700;
+}
+
+.arquivo{
+    grid-column:1/-1;
+    height:auto!important;
+    padding:10px!important;
+    color:var(--muted)!important;
+    background:#f9f2e9!important;
+    border-style:dashed!important;
+}
+
+.arquivo::file-selector-button{
+    margin-right:12px;
+    padding:10px 14px;
+    border:0;
+    border-radius:9px;
+    background:var(--espresso);
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.preview{
+    grid-column:1/-1;
+    display:none;
+    align-items:center;
+    gap:15px;
+    padding:12px;
+    border-radius:15px;
+    color:var(--muted);
+    font-weight:600;
+    background:#f3e7d9;
+}
+
+.preview img{
+    width:76px;
+    height:76px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(53,27,13,.13);
+}
+
+#adicionar{
+    grid-column:1/-1;
+    min-height:55px;
+    padding:14px 20px;
+    border:0;
+    border-radius:14px;
+    color:#fff;
+    font:700 16px 'DM Sans',sans-serif;
+    cursor:pointer;
+    background:linear-gradient(135deg,#8e4d24,#b86f35);
+    box-shadow:0 10px 24px rgba(142,77,36,.22);
+    transition:transform .2s,box-shadow .2s,filter .2s;
+}
+
+#adicionar:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px rgba(142,77,36,.28);
+    filter:brightness(1.05);
+}
+
+#adicionar:active{transform:translateY(0)}
+
+.lista{
+    margin-top:42px;
+}
+
+.lista::before{
+    content:"SEU PEDIDO";
+    display:block;
+    margin-bottom:13px;
+    color:var(--caramel);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.16em;
+}
+
+.pedido{
+    display:grid;
+    grid-template-columns:92px minmax(0,1fr) auto;
+    align-items:center;
+    gap:18px;
+    margin-bottom:13px;
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:19px;
+    background:rgba(255,255,255,.8);
+    box-shadow:0 7px 22px rgba(70,40,23,.055);
+    transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+
+.pedido:hover{
+    transform:translateY(-2px);
+    border-color:rgba(184,111,53,.28);
+    box-shadow:0 12px 28px rgba(70,40,23,.09);
+}
+
+.pedido img{
+    width:92px;
+    height:92px;
+    object-fit:cover;
+    border-radius:15px;
+    background:#eee;
+}
+
+.info{min-width:0}
+
+.info h3{
+    margin-bottom:7px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-family:'Playfair Display',serif;
+    font-size:21px;
+    text-transform:capitalize;
+}
+
+.info p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.controles{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:5px;
+    border-radius:12px;
+    background:#f6ede4;
+}
+
+.controles strong{
+    min-width:26px;
+    text-align:center;
+}
+
+.controles button{
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:9px;
+    color:#fff;
+    background:var(--coffee);
+    font-size:19px;
+    cursor:pointer;
+    transition:transform .15s,background .15s;
+}
+
+.controles button:hover{
+    transform:scale(1.06);
+    background:var(--caramel);
+}
+
+.remover{
+    width:auto!important;
+    height:35px!important;
+    margin-left:4px;
+    padding:0 12px!important;
+    font-size:12px!important;
+    font-weight:700;
+    background:#251712!important;
+}
+
+.vazio{
+    position:relative;
+    overflow:hidden;
+    padding:45px 25px;
+    text-align:center;
+    color:#927c6c;
+    border:1px dashed #cfb79f;
+    border-radius:20px;
+    background:rgba(255,255,255,.42);
+}
+
+.vazio::before{
+    content:"☕";
+    display:block;
+    margin-bottom:12px;
+    font-size:38px;
+    filter:grayscale(.4);
+}
+
+@media(max-width:700px){
+    header{
+        min-height:230px;
+        padding:55px 18px 80px;
+    }
+
+    header h1{letter-spacing:-2px}
+
+    main{margin-top:-42px}
+
+    .box{
+        padding:24px 16px;
+        border-radius:24px;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+        padding:15px;
+    }
+
+    .arquivo,#adicionar,.preview{grid-column:auto}
+
+    .pedido{
+        grid-template-columns:75px minmax(0,1fr);
+        gap:13px;
+    }
+
+    .pedido img{
+        width:75px;
+        height:75px;
+    }
+
+    .controles{
+        grid-column:1/-1;
+        justify-self:stretch;
+        justify-content:center;
+    }
+
+    .remover{margin-left:auto}
+
+    h2{margin-bottom:20px}
+}
+
+@media(max-width:390px){
+    .controles{gap:5px}
+    .remover{padding:0 9px!important}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Cafezao</h1>
+<p>Monte sua lista de cafés e bebidas</p>
+</header>
+
+<main>
+<section class="box">
+<h2>Lista de Pedidos</h2>
+
+<div class="form">
+<input id="nome" type="text" placeholder="Nome da bebida...">
+<input id="qtd" type="number" min="1" value="1">
+
+<input class="arquivo" id="imagem" type="file" accept="image/*">
+
+<div class="preview" id="preview">
+<img id="previewImg" alt="Prévia">
+<span>Imagem selecionada</span>
+</div>
+
+<button id="adicionar" type="button">+ Adicionar pedido</button>
+</div>
+
+<div class="lista">
+<div id="pedidos">
+<div class="vazio">Nenhum pedido adicionado.</div>
+</div>
+</div>
+</section>
+</main>
+
+<script>
+const nome = document.getElementById("nome");
+const qtd = document.getElementById("qtd");
+const imagem = document.getElementById("imagem");
+const preview = document.getElementById("preview");
+const previewImg = document.getElementById("previewImg");
+const pedidosEl = document.getElementById("pedidos");
+const adicionar = document.getElementById("adicionar");
+
+let pedidos = JSON.parse(localStorage.getItem("cafezaoPedidos")) || [];
+
+function salvarPedidos(){
+    try{
+        localStorage.setItem("cafezaoPedidos", JSON.stringify(pedidos));
+    }catch(erro){
+        alert("Não foi possível salvar. A imagem pode ser muito grande para o armazenamento do navegador.");
+        console.error(erro);
+    }
+}
+let imagemAtual = "";
+
+imagem.addEventListener("change", () => {
+    const arquivo = imagem.files[0];
+    if(!arquivo){
+        imagemAtual = "";
+        preview.style.display = "none";
+        return;
+    }
+
+    const leitor = new FileReader();
+    leitor.onload = e => {
+        imagemAtual = e.target.result;
+        previewImg.src = imagemAtual;
+        preview.style.display = "flex";
+    };
+    leitor.readAsDataURL(arquivo);
+});
+
+adicionar.addEventListener("click", () => {
+    const bebida = nome.value.trim();
+    const quantidade = Math.max(1, Number(qtd.value) || 1);
+
+    if(!bebida){
+        alert("Digite o nome da bebida.");
+        nome.focus();
+        return;
+    }
+
+    pedidos.push({
+        nome: bebida,
+        quantidade: quantidade,
+        imagem: imagemAtual
+    });
+
+    salvarPedidos();
+
+    nome.value = "";
+    qtd.value = "1";
+    imagem.value = "";
+    imagemAtual = "";
+    preview.style.display = "none";
+
+    renderizar();
+    nome.focus();
+});
+
+function renderizar(){
+    if(pedidos.length === 0){
+        pedidosEl.innerHTML = '<div class="vazio">Nenhum pedido adicionado.</div>';
+        return;
+    }
+
+    pedidosEl.innerHTML = "";
+
+    pedidos.forEach((pedido, index) => {
+        const item = document.createElement("div");
+        item.className = "pedido";
+
+        const foto = pedido.imagem || "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+        <rect width="100%" height="100%" fill="#ead8b9"/>
+        <text x="50%" y="48%" text-anchor="middle" font-size="55">☕</text>
+        <text x="50%" y="72%" text-anchor="middle" font-family="Arial" font-size="16" fill="#4b2d18">Cafezao</text>
+        </svg>`);
+
+        item.innerHTML = `
+            <img src="${foto}" alt="Imagem de ${pedido.nome}">
+            <div class="info">
+                <h3>${escapeHtml(pedido.nome)}</h3>
+                <p>Quantidade: ${pedido.quantidade}</p>
+            </div>
+            <div class="controles">
+                <button onclick="diminuir(${index})">−</button>
+                <strong>${pedido.quantidade}</strong>
+                <button onclick="aumentar(${index})">+</button>
+                <button class="remover" onclick="remover(${index})">Remover</button>
+            </div>
+        `;
+        pedidosEl.appendChild(item);
+    });
+}
+
+function aumentar(i){
+    pedidos[i].quantidade++;
+    salvarPedidos();
+    renderizar();
+}
+
+function diminuir(i){
+    if(pedidos[i].quantidade > 1){
+        pedidos[i].quantidade--;
+    }else{
+        pedidos.splice(i,1);
+    }
+    salvarPedidos();
+    renderizar();
+}
+
+function remover(i){
+    pedidos.splice(i,1);
+    salvarPedidos();
+    renderizar();
+}
+
+function escapeHtml(texto){
+    const div = document.createElement("div");
+    div.textContent = texto;
+    return div.innerHTML;
+}
+
+nome.addEventListener("keydown", e => {
+    if(e.key === "Enter") adicionar.click();
+});
+
+renderizar();
+</script>
+</body>
+</html>
