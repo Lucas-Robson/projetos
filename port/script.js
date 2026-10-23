@@ -66,7 +66,7 @@ filterButtons.forEach(button => {
 // Carrossel de projetos — basta substituir os blocos "editable-project"
 // Elementos do carrossel e controles de navegação.
 const track = document.querySelector("#projectTrack");
-const projectOrder = ["lrp", "primor", "quiz", "donate"];
+const projectOrder = ["lrp", "fabinho"];
 const orderedSlides = [...track.querySelectorAll(".project-slide")].sort((first, second) => projectOrder.indexOf(first.dataset.project) - projectOrder.indexOf(second.dataset.project));
 orderedSlides.forEach(slide => track.appendChild(slide));
 const slides = document.querySelectorAll(".project-slide");
@@ -148,139 +148,145 @@ themeToggle?.addEventListener("click", () => {
   localStorage.setItem("portfolio-theme", dark ? "dark" : "light");
 });
 
-// Snake editorial: experiencia automatica em grid, limitada ao palco direito.
+// SNAKE REAL — motor JavaScript independente de animacoes CSS.
 (() => {
-  const canvas = document.querySelector(".snake-canvas");
-  const frame = canvas?.closest(".profile-stage");
-  const photo = frame?.querySelector("[data-profile-photo]");
-  if (!canvas || !frame) return;
+  const canvas = document.querySelector('.snake-canvas');
+  const stage = canvas?.closest('.profile-stage');
+  if (!canvas || !stage) return;
+  const ctx = canvas.getContext('2d');
+  const pointer = { x: 0, y: 0, active: false, lastMove: 0 };
+  const vectors = [[1,0], [0,1], [-1,0], [0,-1]];
+  let cols = 24, rows = 16, cell = 20, ox = 0, oy = 0;
+  let snake = [], apple = null, heading = 0, score = 0;
+  let last = 0, accumulator = 0, frameId = 0;
+  const interval = 125; // Velocidade intermediaria.
+  const snakeLength = 9; // Comprimento fixo, sem crescimento.
+  const wrap = (n, max) => (n + max) % max;
+  const key = p => `${p.x},${p.y}`;
+  const same = (a,b) => a.x === b.x && a.y === b.y;
+  const nextCell = (p, dir) => ({ x: wrap(p.x + vectors[dir][0],cols), y: wrap(p.y + vectors[dir][1],rows) });
 
-  const context = canvas.getContext("2d");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const pointer = { x: 0, y: 0, active: false };
-  const directions = { up: { x: 0, y: -1 }, down: { x: 0, y: 1 }, left: { x: -1, y: 0 }, right: { x: 1, y: 0 } };
-  let columns = 24;
-  let rows = 16;
-  let cellSize = 20;
-  let pixelRatio = 1;
-  let snake = [];
-  let direction = "up";
-  let nextDirection = "up";
-  let stepTimer = 0;
-  let stepDuration = 125;
-  let lastTime = 0;
-  let animationFrame;
-  let score = 0;
-
-  function resize() {
-    const bounds = frame.getBoundingClientRect();
-    const compact = bounds.width < 420;
-    columns = compact ? 18 : bounds.width < 700 ? 21 : 24;
-    rows = compact ? 14 : bounds.height < 400 ? 14 : 16;
-    cellSize = Math.min(bounds.width / columns, bounds.height / rows);
-    pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(bounds.width * pixelRatio);
-    canvas.height = Math.round(bounds.height * pixelRatio);
-    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    snake = [];
-    const startX = Math.floor(columns * .14);
-    const startY = Math.floor(rows * .78);
-    for (let index = 0; index < 11; index += 1) snake.push({ x: (startX + index) % columns, y: startY });
-    direction = "up";
-    nextDirection = "up";
-    stepTimer = 0;
-    draw();
-  }
-
-  function isOpposite(first, second) {
-    return directions[first].x + directions[second].x === 0 && directions[first].y + directions[second].y === 0;
-  }
-
-  function chooseDirection() {
-    if (!pointer.active) return;
-    const head = snake[0];
-    const headX = (head.x + .5) * cellSize;
-    const headY = (head.y + .5) * cellSize;
-    const horizontal = pointer.x - headX;
-    const vertical = pointer.y - headY;
-    const preferred = Math.abs(horizontal) > Math.abs(vertical)
-      ? (horizontal < 0 ? "left" : "right")
-      : (vertical < 0 ? "up" : "down");
-    if (!isOpposite(direction, preferred)) nextDirection = preferred;
-  }
-
-  function chooseAutomaticZigzag() {
-    const head = snake[0];
-    if (direction === "up" && head.y <= 2) nextDirection = head.x < columns / 2 ? "right" : "left";
-    if (direction === "right" && head.x >= columns - 2) nextDirection = "down";
-    if (direction === "down" && head.y >= rows - 3) nextDirection = "left";
-    if (direction === "left" && head.x <= 2) nextDirection = "up";
-  }
-
-  function step() {
-    if (pointer.active) chooseDirection();
-    else chooseAutomaticZigzag();
-    if (!isOpposite(direction, nextDirection)) direction = nextDirection;
-    const vector = directions[direction];
-    const head = snake[0];
-    const nextHead = { x: (head.x + vector.x + columns) % columns, y: (head.y + vector.y + rows) % rows };
-    snake.unshift(nextHead);
-    snake.pop();
-    score = (score + 1) % 999;
-  }
-
-  function draw(time = 0) {
-    const delta = Math.min(time - lastTime || 16, 40);
-    lastTime = time;
-    stepTimer += delta;
-    if (!reduceMotion.matches && stepTimer >= stepDuration) {
-      stepTimer %= stepDuration;
-      step();
+  function newApple() {
+    const occupied = new Set(snake.map(key));
+    const empty = [];
+    for (let y=0;y<rows;y++) for(let x=0;x<cols;x++) {
+      if (!occupied.has(`${x},${y}`)) empty.push({x,y});
     }
+    apple = empty.length ? empty[Math.floor(Math.random()*empty.length)] : null;
+  }
+  function reset() {
+    snake = Array.from({length:snakeLength}, (_,i) => ({x:wrap(Math.floor(cols*.22)-i,cols), y:Math.floor(rows*.75)}));
+    heading=0; score=0; accumulator=0; newApple();
+    const label=stage.querySelector('.profile-micro-bottom');
+    if(label) label.textContent='SNAKE / MOUSE + MOVIMENTO AUTOMÁTICO';
+  }
+  function resize() {
+    const rect=stage.getBoundingClientRect();
+    cols=rect.width<420?18:24;
+    rows=rect.height<390?14:16;
+    cell=Math.min(rect.width/cols,rect.height/rows);
+    ox=(rect.width-cols*cell)/2; oy=(rect.height-rows*cell)/2;
+    const ratio=Math.min(devicePixelRatio||1,2);
+    canvas.width=Math.max(1,Math.round(rect.width*ratio));
+    canvas.height=Math.max(1,Math.round(rect.height*ratio));
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+    reset(); render();
+  }
+  function targetCell() {
+    if (!pointer.active || performance.now() - pointer.lastMove > 2200) return null;
+    return {
+      x: Math.max(0,Math.min(cols-1,Math.floor((pointer.x-ox)/cell))),
+      y: Math.max(0,Math.min(rows-1,Math.floor((pointer.y-oy)/cell)))
+    };
+  }
+  // Busca em largura: encontra um caminho ate o cursor sem atravessar o corpo.
+  function routeTo(target) {
+    if (!target) return null;
+    const blocked=new Set(snake.slice(0,-1).map(key));
+    const queue=[{p:snake[0],first:null}];
+    const visited=new Set([key(snake[0])]);
+    for(let i=0;i<queue.length;i++) {
+      const {p,first}=queue[i];
+      if(same(p,target)) return first;
+      for(let dir=0;dir<4;dir++) {
+        if(first===null && (dir+2)%4===heading) continue;
+        const n=nextCell(p,dir), k=key(n);
+        if(visited.has(k)||blocked.has(k)) continue;
+        visited.add(k);queue.push({p:n,first:first===null?dir:first});
+      }
+    }
+    return null;
+  }
+  function step() {
+    const target=targetCell();
+    // Segue o cursor quando ele se move; sem movimento, passeia ate a maca.
+    const destination = target && !same(snake[0], target) ? target : apple;
+    let choice=routeTo(destination);
+    const occupied=new Set(snake.slice(0,-1).map(key));
+    const safe=d => d!==null && (d+2)%4!==heading && !occupied.has(key(nextCell(snake[0],d)));
+    if (!safe(choice)) {
+      choice=[heading,(heading+1)%4,(heading+3)%4].find(safe);
+    }
+    if(choice===undefined || choice===null) {reset();return;}
+    heading=choice;
+    const head=nextCell(snake[0],heading);
+    const ate=apple && same(head,apple);
+    const collision=snake.slice(0,-1).some(part=>same(part,head));
+    if(collision) return; // Nao reinicia nem aumenta o corpo.
+    snake.unshift(head);
+    snake.pop(); // Tamanho sempre fixo.
+    if(ate) newApple(); // A maca muda de lugar, mas nao cresce.
 
-    const bounds = frame.getBoundingClientRect();
-    const offsetX = (bounds.width - columns * cellSize) / 2;
-    const offsetY = (bounds.height - rows * cellSize) / 2;
-    context.clearRect(0, 0, bounds.width, bounds.height);
-    context.fillStyle = "rgba(116,18,29,.07)";
-    context.fillRect(offsetX, offsetY, columns * cellSize, rows * cellSize);
-
-    snake.slice().reverse().forEach((segment, index) => {
-      const x = offsetX + segment.x * cellSize + 2;
-      const y = offsetY + segment.y * cellSize + 2;
-      const size = cellSize - 4;
-      const isHead = index === snake.length - 1;
-      context.fillStyle = isHead ? "#500c14" : index % 3 === 0 ? "#8f2b38" : "#74121d";
-      context.fillRect(x, y, size, size);
-      if (isHead) {
-        context.fillStyle = "#e9d4d5";
-        context.fillRect(x + size * .32, y + size * .32, Math.max(2, size * .18), Math.max(2, size * .18));
+  }
+  function render() {
+    const w=canvas.width/(Math.min(devicePixelRatio||1,2));
+    const h=canvas.height/(Math.min(devicePixelRatio||1,2));
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='rgba(116,18,29,.055)';ctx.fillRect(ox,oy,cols*cell,rows*cell);
+    if(apple) {
+      const x=ox+apple.x*cell,y=oy+apple.y*cell;
+      ctx.fillStyle='#d92335';
+      ctx.fillRect(Math.round(x+cell*.18),Math.round(y+cell*.18),Math.max(3,Math.floor(cell*.64)),Math.max(3,Math.floor(cell*.64)));
+    }
+    snake.forEach((part,i)=>{
+      const x=ox+part.x*cell+1.5,y=oy+part.y*cell+1.5,s=cell-3;
+      ctx.fillStyle=i===0?'#440910':i%2?'#a23b4b':'#74121d';
+      ctx.fillRect(x,y,s,s);
+      if(i===0){
+        ctx.fillStyle='#fff';
+        if(heading%2===0){
+          const ex=heading===0?x+s*.70:x+s*.18;
+          ctx.fillRect(ex,y+s*.18,Math.max(2,s*.12),Math.max(2,s*.12));
+          ctx.fillRect(ex,y+s*.68,Math.max(2,s*.12),Math.max(2,s*.12));
+        }else{
+          const ey=heading===1?y+s*.70:y+s*.18;
+          ctx.fillRect(x+s*.18,ey,Math.max(2,s*.12),Math.max(2,s*.12));
+          ctx.fillRect(x+s*.68,ey,Math.max(2,s*.12),Math.max(2,s*.12));
+        }
       }
     });
-
-    if (!reduceMotion.matches) animationFrame = window.requestAnimationFrame(draw);
   }
-
+  function loop(time) {
+    if(!last)last=time;
+    accumulator+=Math.min(time-last,100);last=time;
+    while(accumulator>=interval){step();accumulator-=interval;}
+    render();frameId=requestAnimationFrame(loop);
+  }
   function updatePointer(event) {
-    const bounds = frame.getBoundingClientRect();
-    pointer.x = event.clientX - bounds.left;
-    pointer.y = event.clientY - bounds.top;
-    pointer.active = true;
-    if (photo) {
-      const offsetX = (pointer.x / bounds.width - .5) * -7;
-      const offsetY = (pointer.y / bounds.height - .5) * -5;
-      photo.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
-    }
+    const rect=stage.getBoundingClientRect();
+    pointer.x=event.clientX-rect.left;pointer.y=event.clientY-rect.top;
+    pointer.active=true;pointer.lastMove=performance.now();
   }
-
-  frame.addEventListener("pointerenter", updatePointer);
-  frame.addEventListener("pointermove", updatePointer);
-  frame.addEventListener("pointerleave", () => {
-    pointer.active = false;
-    if (photo) photo.style.transform = "translate(-50%, -50%)";
-  });
-  window.addEventListener("resize", resize, { passive: true });
-  resize();
-  if (reduceMotion.matches) draw();
-  window.addEventListener("pagehide", () => window.cancelAnimationFrame(animationFrame), { once: true });
+  // Captura o mouse na pagina inteira, inclusive sobre a foto e outros elementos.
+  document.addEventListener('pointermove', event => {
+    if(event.pointerType === 'mouse' || event.pointerType === 'pen') updatePointer(event);
+  }, {passive:true});
+  document.addEventListener('pointerleave',()=>{pointer.active=false;});
+  window.addEventListener('blur',()=>{pointer.active=false;});
+  // ResizeObserver tambem responde a mudancas no layout, nao apenas na janela.
+  if(typeof ResizeObserver!=='undefined')new ResizeObserver(resize).observe(stage);
+  else window.addEventListener('resize',resize,{passive:true});
+  document.addEventListener('visibilitychange',()=>{last=0;});
+  window.addEventListener('pagehide',()=>cancelAnimationFrame(frameId));
+  resize();frameId=requestAnimationFrame(loop);
 })();

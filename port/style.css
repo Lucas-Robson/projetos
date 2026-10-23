@@ -753,3 +753,14 @@ footer small,footer>span,footer>a{font-size:10px}
   .tags span{font-size:10px !important}
   .whatsapp-float{font-size:9px}
 }
+/* Snake permanece ativo independentemente da preferencia de animacao do SO. */
+.snake-canvas{display:block;pointer-events:none}
+
+/* Font Awesome: iconografia consistente, mantendo Devicon nas linguagens */
+.header-nav a i{font-size:.9em;margin-right:5px;color:var(--burgundy)}
+.contact-details span i{width:17px;text-align:center;font-size:14px;margin-right:7px;color:inherit}
+.hero-actions .button i,.project-data a i,footer>a i{font-size:1em}
+.contact-form button i{margin-left:9px}
+.letter-icon i{font-size:inherit;color:inherit}
+.whatsapp-icon i{font-size:26px;color:#fff;line-height:1}
+@media(max-width:720px){.header-nav a i{font-size:.75em}}
