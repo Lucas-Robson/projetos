@@ -1,0 +1,8 @@
+PORTFÓLIO — CÓDIGO ORGANIZADO
+
+index.html: estrutura da página
+style.css: estilos organizados em blocos, com indentação
+script.js: interações, carrossel e Snake
+fabinho-vicente.png: logo do projeto
+
+Mantenha as demais imagens originais (incluindo lrp.png e a foto do perfil) na mesma pasta.
